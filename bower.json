@@ -1,0 +1,24 @@
+{
+  "name": "mockserver-grunt",
+  "version": "0.0.7",
+  "homepage": "https://github.com/jamesdbloom/mockserver-grunt",
+  "authors": [
+    "James Bloom <jamesdbloom@gmail.com>"
+  ],
+  "description": "A grunt task to run the MockServer",
+  "main": "tasks/mockServer.js",
+  "keywords": [
+    "mockserver",
+    "grunt"
+  ],
+  "license": "Apache",
+  "ignore": [
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+    ".*",
+    "Gruntfile.js",
+    "*.iml"
+  ]
+}
