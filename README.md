@@ -14,7 +14,7 @@ Grunt plugin to MockServer and the MockServer proxy to started and stopped from 
 [![NPM](https://nodei.co/npm/mockserver-grunt.png?downloads=true&stars=true)](https://nodei.co/npm/mockserver-grunt/)
 
 ## Getting Started
-This plugin requires Grunt `~0.4`
+This node module can be using as a stand alone module or as a Grunt plugin.
 
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
@@ -90,6 +90,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
  * 2014-28-11   v0.0.5   Fully integration new drone.io build
  * 2014-28-11   v0.0.6   Fixing issue with attached jar
  * 2014-28-11   v0.0.7   Fixing issue missing tasks folder
+ * 2014-28-11   v0.0.8   Added support for use as plain node module
 
 ---
 
