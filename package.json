@@ -47,7 +47,8 @@
     "mockserver"
   ],
   "dependencies": {
-    "sleep": "~1.1",
-    "request": "~2.47"
+    "glob": "~4.0",
+    "request": "~2.47",
+    "sleep": "~1.1"
   }
 }
