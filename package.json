@@ -1,7 +1,7 @@
 {
   "name": "mockserver-grunt",
   "description": "A grunt task to run the MockServer",
-  "version": "0.0.5",
+  "version": "0.0.7",
   "homepage": "https://github.com/jamesdbloom/mockserver",
   "author": {
     "name": "James Bloom",
@@ -27,6 +27,10 @@
   "scripts": {
     "test": "grunt"
   },
+  "files": [
+    "mockserver-netty-*-jar-with-dependencies.jar",
+    "tasks"
+  ],
   "devDependencies": {
     "grunt": "~0.4",
     "grunt-contrib-clean": "~0.6",
