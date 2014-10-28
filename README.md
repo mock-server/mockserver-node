@@ -89,6 +89,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
  * 2014-28-11   v0.0.4   Separated out of main MockServer build
  * 2014-28-11   v0.0.5   Fully integration new drone.io build
  * 2014-28-11   v0.0.6   Fixing issue with attached jar
+ * 2014-28-11   v0.0.7   Fixing issue missing tasks folder
 
 ---
 
