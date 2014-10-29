@@ -24,13 +24,13 @@ npm install mockserver-grunt --save-dev
 
 ## Node Module
 
-To start or stop the MockServer from any node code you need to import this module using `require('mockserver-grunt')` as follows:
+To start or stop the MockServer from any node.js code you need to import this module using `require('mockserver-grunt')` as follows:
 
 ```js
 var mockserver = require('mockserver-grunt');
 ```
 
-Then you can use either the start_mockserver or stop_mockserver functions as follows:
+Then you can use either the `start_mockserver` or `stop_mockserver` functions as follows:
 
 ```js
 mockserver.start_mockserver({
@@ -52,7 +52,7 @@ If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out th
 
 In your project's Gruntfile, add a section named `start_mockserver` and `stop_mockserver` to the data object passed into `grunt.initConfig()`.
 
-Typically the options section would not need to be provided as these values are read from the **package.json** file for the project.  In this example, however, custom options are used to override the default values.  For more details on the default values see below.
+The following example will result in a both a MockServer and a MockServer Proxy being started on both HTTP and HTTPS ports. 
 
 ```js
 grunt.initConfig({
@@ -75,8 +75,6 @@ grunt.initConfig({
 
 grunt.loadNpmTasks('mockserver-grunt');
 ```
-
-This will result in a both a MockServer and a MockServer Proxy being started on both HTTP and HTTPS ports. 
 
 To control what is started only specify the ports you require. For example if you only want to start the MockServer for HTTP only provide this port, if you do this the proxy will not be started and the MockServer will not create an HTTPS endpoint. 
 
