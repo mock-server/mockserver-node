@@ -1,6 +1,6 @@
 # mockserver-grunt 
 
-> Start and stop [MockServer](http://mock-server.com/) from grunt
+> Node module and grunt plugin to start and stop [MockServer](http://mock-server.com/)
 
 Grunt plugin to MockServer and the MockServer proxy to started and stopped from grunt.
 
@@ -14,17 +14,42 @@ Grunt plugin to MockServer and the MockServer proxy to started and stopped from 
 [![NPM](https://nodei.co/npm/mockserver-grunt.png?downloads=true&stars=true)](https://nodei.co/npm/mockserver-grunt/)
 
 ## Getting Started
-This node module can be using as a stand alone module or as a Grunt plugin.
+This node module can be used to start and stop [MockServer](http://mock-server.com/) and the [MockServer](http://mock-server.com/) proxy as a node module or as a Grunt plugin.
 
-If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
+You may install this plugin / node module with the following command:
 
 ```shell
 npm install mockserver-grunt --save-dev
 ```
 
-## The "start_mockserver" task
+## Node Module
 
-### Overview
+To start or stop the MockServer from any node code you need to import this module using `require('mockserver-grunt')` as follows:
+
+```js
+var mockserver = require('mockserver-grunt');
+```
+
+Then you can use either the start_mockserver or stop_mockserver functions as follows:
+
+```js
+mockserver.start_mockserver({
+                serverPort: 1080,
+                serverSecurePort: 1082,
+                proxyPort: 1090,
+                proxySecurePort: 1092,
+                verbose: true
+            });
+
+// do something
+
+mockserver.start_mockserver();
+```
+
+## Grunt Plugin
+
+If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins.
+
 In your project's Gruntfile, add a section named `start_mockserver` and `stop_mockserver` to the data object passed into `grunt.initConfig()`.
 
 Typically the options section would not need to be provided as these values are read from the **package.json** file for the project.  In this example, however, custom options are used to override the default values.  For more details on the default values see below.
@@ -47,6 +72,8 @@ grunt.initConfig({
         }
     }
 });
+
+grunt.loadNpmTasks('mockserver-grunt');
 ```
 
 This will result in a both a MockServer and a MockServer Proxy being started on both HTTP and HTTPS ports. 
@@ -79,6 +106,12 @@ Default value: ``
 
 This value indicates that you want to start the proxy using this value for the HTTPS port.  The proxy will only be started if either an HTTP i.e. `proxyPort` or HTTPS i.e. `proxySecurePort` port is provided, if neither are provided the proxy will not be started.
 
+#### options.verbose
+Type: `Boolean`
+Default value: `false`
+
+This value indicates whether the MockServer logs should be written to the console.
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
@@ -93,6 +126,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
  * 2014-28-11   v0.0.8   Added support for use as plain node module
  * 2014-28-11   v0.0.9   Added missing critical file to module
  * 2014-28-12   v1.0.0   Fixed final issues with file naming
+ * 2014-28-12   v1.0.1   Improved the documentation
 
 ---
 
