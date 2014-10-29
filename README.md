@@ -92,6 +92,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
  * 2014-28-11   v0.0.7   Fixing issue missing tasks folder
  * 2014-28-11   v0.0.8   Added support for use as plain node module
  * 2014-28-11   v0.0.9   Added missing critical file to module
+ * 2014-28-12   v1.0.0   Fixed final issues with file naming
 
 ---
 

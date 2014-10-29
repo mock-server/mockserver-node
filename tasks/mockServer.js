@@ -10,7 +10,7 @@ module.exports = function (grunt) {
 
     'use strict';
 
-    var mockServer = require('../mockServer.js');
+    var mockServer = require('../index.js');
 
     grunt.registerMultiTask('start_mockserver', 'Run MockServer from grunt build', function () {
         var done = this.async();
