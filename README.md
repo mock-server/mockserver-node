@@ -82,25 +82,25 @@ To control what is started only specify the ports you require. For example if yo
 
 #### options.serverPort
 Type: `Integer`
-Default value: ``
+Default value: `undefined`
 
 This value indicates that you want to start the MockServer using this value for the HTTP port.  The MockServer will only be started if either an HTTP i.e. `serverPort` or HTTPS i.e. `serverSecurePort` port is provided, if neither are provided the MockServer will not be started.
 
 #### options.serverSecurePort
 Type: `Integer`
-Default value: ``
+Default value: `undefined`
 
 This value indicates that you want to start the MockServer using this value for the HTTPS port.  The MockServer will only be started if either an HTTP i.e. `serverPort` or HTTPS i.e. `serverSecurePort` port is provided, if neither are provided the MockServer will not be started.
 
 #### options.proxyPort
 Type: `Integer`
-Default value: ``
+Default value: `undefined`
 
 This value indicates that you want to start the proxy using this value for the HTTP port.  The proxy will only be started if either an HTTP i.e. `proxyPort` or HTTPS i.e. `proxySecurePort` port is provided, if neither are provided the proxy will not be started.
 
 #### options.proxySecurePort
 Type: `Integer`
-Default value: ``
+Default value: `undefined`
 
 This value indicates that you want to start the proxy using this value for the HTTPS port.  The proxy will only be started if either an HTTP i.e. `proxyPort` or HTTPS i.e. `proxySecurePort` port is provided, if neither are provided the proxy will not be started.
 
