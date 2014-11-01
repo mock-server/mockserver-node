@@ -16,8 +16,11 @@ module.exports = function (grunt) {
         var done = this.async();
         var options = this.options();
         options.verbose = grunt.option('verbose');
-        mockServer.start_mockserver(options);
-        done(true);
+        mockServer.start_mockserver(options).then(function() {
+            done(true);
+        }, function() {
+            done(false);
+        });
     });
 
     grunt.registerTask('stop_mockserver', 'Stop MockServer from grunt build', function() {

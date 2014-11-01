@@ -117,14 +117,16 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
  * 2014-28-10   v0.0.1   Released mockserver-grunt task
  * 2014-28-10   v0.0.2   Minor tweaks
  * 2014-28-10   v0.0.3   Yet more minor tweaks with build
- * 2014-28-11   v0.0.4   Separated out of main MockServer build
- * 2014-28-11   v0.0.5   Fully integration new drone.io build
- * 2014-28-11   v0.0.6   Fixing issue with attached jar
- * 2014-28-11   v0.0.7   Fixing issue missing tasks folder
- * 2014-28-11   v0.0.8   Added support for use as plain node module
- * 2014-28-11   v0.0.9   Added missing critical file to module
- * 2014-28-12   v1.0.0   Fixed final issues with file naming
- * 2014-28-12   v1.0.1   Improved the documentation
+ * 2014-29-10   v0.0.4   Separated out of main MockServer build
+ * 2014-29-10   v0.0.5   Fully integration new drone.io build
+ * 2014-29-10   v0.0.6   Fixing issue with attached jar
+ * 2014-29-10   v0.0.7   Fixing issue missing tasks folder
+ * 2014-29-10   v0.0.8   Added support for use as plain node module
+ * 2014-29-10   v0.0.9   Added missing critical file to module
+ * 2014-30-10   v1.0.0   Fixed final issues with file naming
+ * 2014-30-10   v1.0.1   Improved the documentation
+ * 2014-30-10   v1.0.2   Improved the documentation
+ * 2014-01-11   v1.0.3   Replaced sleep with detection MockServer status
 
 ---
 

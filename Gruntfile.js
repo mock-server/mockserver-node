@@ -11,6 +11,9 @@
 module.exports = function (grunt) {
 
     grunt.initConfig({
+        exec: {
+            stop_existing_mockservers: './stop_MockServer.sh'
+        },
         jshint: {
             all: [
                 'Gruntfile.js',
@@ -51,51 +54,60 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('download_jar', 'Download latest MockServer jar version', function () {
-        var done = this.async(),
-            request = require('request'),
-            fs = require('fs'),
-            version = '3.6.2',
-            src = 'https://repo1.maven.org/maven2/org/mock-server/mockserver-netty/' + version + '/mockserver-netty-' + version + '-jar-with-dependencies.jar',
-            dest = 'mockserver-netty-' + version + '-jar-with-dependencies.jar',
-            req = request({
+        var done = this.async();
+        var request = require('request');
+        var fs = require('fs');
+        var version = '3.6.2';
+        var src = 'https://repo1.maven.org/maven2/org/mock-server/mockserver-netty/' + version + '/mockserver-netty-' + version + '-jar-with-dependencies.jar';
+        var dest = 'mockserver-netty-' + version + '-jar-with-dependencies.jar';
+
+        if (!grunt.file.exists(dest)) {
+            grunt.log.write('Fetching ' + src);
+
+            var req = request({
                 uri: src
             });
 
-        // On error, callback
-        req.on('error', function(error) {
-            grunt.log.warn('Fetching ' + src + ' failed with error ' + error);
-            done(false);
-        });
-
-        // On response, callback for writing out the stream
-        req.on('response', function handleResponse(res) {
-            if (res.statusCode < 200 || res.statusCode >= 300) {
-                grunt.log.warn('Fetching ' + src + ' failed with HTTP status code ' + res.statusCode);
-                done(false);
-            }
-
-            var writeStream = fs.createWriteStream(dest);
-            res.pipe(writeStream);
-
-            writeStream.on('error', function(error) {
-                grunt.log.warn('Saving ' + dest + ' failed with error ' + error);
+            // On error, callback
+            req.on('error', function (error) {
+                grunt.log.warn('Fetching ' + src + ' failed with error ' + error);
                 done(false);
             });
-            writeStream.on('close', function() {
-                grunt.verbose.warn('Saved ' + dest + ' from ' + src);
-                done(true);
+
+            // On response, callback for writing out the stream
+            req.on('response', function handleResponse(res) {
+                if (res.statusCode < 200 || res.statusCode >= 300) {
+                    grunt.log.warn('Fetching ' + src + ' failed with HTTP status code ' + res.statusCode);
+                    done(false);
+                }
+
+                var writeStream = fs.createWriteStream(dest);
+                res.pipe(writeStream);
+
+                writeStream.on('error', function (error) {
+                    grunt.log.warn('Saving ' + dest + ' failed with error ' + error);
+                    done(false);
+                });
+                writeStream.on('close', function () {
+                    grunt.verbose.warn('Saved ' + dest + ' from ' + src);
+                    done(true);
+                });
             });
-        });
+        } else {
+            grunt.log.write('Skipping ' + src + ' as file already downloaded');
+            done(true);
+        }
     });
 
     // load this plugin's task
     grunt.loadTasks('tasks');
 
+    grunt.loadNpmTasks('grunt-exec');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-nodeunit');
 
     grunt.registerTask('test', ['start_mockserver:start', 'nodeunit:started', 'stop_mockserver:stop', 'nodeunit:stopped']);
 
-    grunt.registerTask('default', ['download_jar', 'jshint', 'test']);
+    grunt.registerTask('default', ['exec', 'download_jar', 'jshint', 'test']);
 };
