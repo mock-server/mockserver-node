@@ -61,7 +61,8 @@ module.exports = function (grunt) {
         var src = 'https://repo1.maven.org/maven2/org/mock-server/mockserver-netty/' + version + '/mockserver-netty-' + version + '-jar-with-dependencies.jar';
         var dest = 'mockserver-netty-' + version + '-jar-with-dependencies.jar';
 
-        if (!grunt.file.exists(grunt.file.expand('mockserver-netty-*-jar-with-dependencies.jar')[0])) {
+        var currentMockServerJars = grunt.file.expand('mockserver-netty-*-jar-with-dependencies.jar');
+        if (currentMockServerJars.length === 0) {
             grunt.log.write('Fetching ' + src);
 
             var req = request({
