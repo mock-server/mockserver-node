@@ -57,7 +57,7 @@ module.exports = function (grunt) {
         var done = this.async();
         var request = require('request');
         var fs = require('fs');
-        var version = '3.6.2';
+        var version = '3.7';
         var src = 'https://repo1.maven.org/maven2/org/mock-server/mockserver-netty/' + version + '/mockserver-netty-' + version + '-jar-with-dependencies.jar';
         var dest = 'mockserver-netty-' + version + '-jar-with-dependencies.jar';
 

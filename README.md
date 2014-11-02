@@ -11,7 +11,7 @@ Grunt plugin to MockServer and the MockServer proxy to started and stopped from 
 [![Stories in Backlog](https://badge.waffle.io/jamesdbloom/mockserver.png?label=proposal&title=Proposals)](https://waffle.io/jamesdbloom/mockserver) [![Stories in Backlog](https://badge.waffle.io/jamesdbloom/mockserver.png?label=ready&title=Ready)](https://waffle.io/jamesdbloom/mockserver) [![Stories in Backlog](https://badge.waffle.io/jamesdbloom/mockserver.png?label=in%20progress&title=In%20Progress)](https://waffle.io/jamesdbloom/mockserver)
 
 
-[![NPM](https://nodei.co/npm/mockserver-grunt.png?downloads=true&stars=true)](https://nodei.co/npm/mockserver-grunt/)
+[![NPM](https://nodei.co/npm/mockserver-grunt.png?downloads=true&stars=true)](https://nodei.co/npm/mockserver-grunt/) [![wercker status](https://app.wercker.com/status/762222be73287acc5013d8b186aacc5c/m "wercker status")](https://app.wercker.com/project/bykey/762222be73287acc5013d8b186aacc5c)
 
 ## Getting Started
 This node module can be used to start and stop [MockServer](http://mock-server.com/) and the [MockServer](http://mock-server.com/) proxy as a node module or as a Grunt plugin.
@@ -127,6 +127,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
  * 2014-30-10   v1.0.1   Improved the documentation
  * 2014-30-10   v1.0.2   Improved the documentation
  * 2014-01-11   v1.0.3   Replaced sleep with detection MockServer status
+ * 2014-02-11   v1.0.4   Upgraded MockServer version and build process
 
 ---
 
