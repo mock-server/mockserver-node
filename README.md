@@ -43,7 +43,7 @@ mockserver.start_mockserver({
 
 // do something
 
-mockserver.start_mockserver();
+mockserver.stop_mockserver();
 ```
 
 ## Grunt Plugin
