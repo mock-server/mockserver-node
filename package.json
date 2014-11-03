@@ -1,7 +1,7 @@
 {
     "name": "mockserver-grunt",
     "description": "Node.js module and Grunt plugin to start and stop MockServer",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "homepage": "https://github.com/jamesdbloom/mockserver",
     "author": {
         "name": "James Bloom",
@@ -38,10 +38,9 @@
         "grunt-contrib-clean": "~0.6",
         "grunt-contrib-jshint": "~0.10",
         "grunt-contrib-nodeunit": "~0.4",
-        "grunt-exec": "^0.4.6",
+        "grunt-exec": "~0.4",
         "grunt-run-node": "~0.1",
-        "nodeunit": "~0.9",
-        "q": "~1.0"
+        "nodeunit": "~0.9"
     },
     "peerDependencies": {
         "grunt": "~0.4"
@@ -53,6 +52,7 @@
     ],
     "dependencies": {
         "glob": "~4.0",
-        "request": "~2.47"
+        "request": "~2.47",
+        "q": "~1.0"
     }
 }
