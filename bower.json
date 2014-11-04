@@ -22,6 +22,11 @@
         "Gruntfile.js",
         "*.iml"
     ],
+    "dependencies": {
+        "glob": "~4.0",
+        "request": "~2.47",
+        "q": "~1.0"
+    },
     "moduleType": [
         "node"
     ]
