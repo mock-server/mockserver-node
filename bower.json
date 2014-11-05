@@ -9,7 +9,7 @@
     "main": [
         "tasks/mockServer.js",
         "index.js",
-        "mockserver-netty-*-jar-with-dependencies.jar"
+        "mockserver-netty-3.7-jar-with-dependencies.jar"
     ],
     "keywords": [
         "mockserver",
