@@ -6,7 +6,11 @@
         "James Bloom <jamesdbloom@gmail.com>"
     ],
     "description": "Node.js module and Grunt plugin to start and stop MockServer",
-    "main": "tasks/mockServer.js",
+    "main": [
+        "tasks/mockServer.js",
+        "index.js",
+        "mockserver-netty-*-jar-with-dependencies.jar"
+    ],
     "keywords": [
         "mockserver",
         "gruntplugin",
@@ -20,7 +24,8 @@
         "tests",
         ".*",
         "Gruntfile.js",
-        "*.iml"
+        "*.iml",
+        "*.yml"
     ],
     "dependencies": {
         "glob": "~4.0",
