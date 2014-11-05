@@ -55,49 +55,11 @@ module.exports = function (grunt) {
 
     grunt.registerTask('download_jar', 'Download latest MockServer jar version', function () {
         var done = this.async();
-        var request = require('request');
-        var fs = require('fs');
-        var version = '3.7';
-        var src = 'https://repo1.maven.org/maven2/org/mock-server/mockserver-netty/' + version + '/mockserver-netty-' + version + '-jar-with-dependencies.jar';
-        var dest = 'mockserver-netty-' + version + '-jar-with-dependencies.jar';
-
-        var currentMockServerJars = grunt.file.expand('mockserver-netty-*-jar-with-dependencies.jar');
-        if (currentMockServerJars.length === 0) {
-            grunt.log.write('Fetching ' + src);
-
-            var req = request({
-                uri: src
-            });
-
-            // On error, callback
-            req.on('error', function (error) {
-                grunt.log.warn('Fetching ' + src + ' failed with error ' + error);
-                done(false);
-            });
-
-            // On response, callback for writing out the stream
-            req.on('response', function handleResponse(res) {
-                if (res.statusCode < 200 || res.statusCode >= 300) {
-                    grunt.log.warn('Fetching ' + src + ' failed with HTTP status code ' + res.statusCode);
-                    done(false);
-                }
-
-                var writeStream = fs.createWriteStream(dest);
-                res.pipe(writeStream);
-
-                writeStream.on('error', function (error) {
-                    grunt.log.warn('Saving ' + dest + ' failed with error ' + error);
-                    done(false);
-                });
-                writeStream.on('close', function () {
-                    grunt.verbose.warn('Saved ' + dest + ' from ' + src);
-                    done(true);
-                });
-            });
-        } else {
-            grunt.log.write('Skipping ' + src + ' as file already downloaded');
+        require('./downloadJar').downloadJar('3.7').then(function () {
             done(true);
-        }
+        }, function () {
+            done(false);
+        });
     });
 
     // load this plugin's task

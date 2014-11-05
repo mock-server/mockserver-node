@@ -31,37 +31,43 @@ module.exports = (function () {
     }
 
     function start_mockserver(options) {
-        var spawn = require('child_process').spawn;
-        var glob = require('glob');
-        var commandLineOptions = ['-Dfile.encoding=UTF-8', '-Dmockserver.logLevel=WARN', '-jar', glob.sync('**/mockserver-netty-*-jar-with-dependencies.jar')];
-        if (options.serverPort) {
-            commandLineOptions.push("-serverPort");
-            commandLineOptions.push(options.serverPort);
-            testPort = testPort || options.serverPort;
-        }
-        if (options.serverSecurePort) {
-            commandLineOptions.push("-serverSecurePort");
-            commandLineOptions.push(options.serverSecurePort);
-            testPort = testPort || options.serverSecurePort;
-        }
-        if (options.proxyPort) {
-            commandLineOptions.push("-proxyPort");
-            commandLineOptions.push(options.proxyPort);
-            testPort = testPort || options.proxyPort;
-        }
-        if (options.proxySecurePort) {
-            commandLineOptions.push("-proxySecurePort");
-            commandLineOptions.push(options.proxySecurePort);
-            testPort = testPort || options.proxySecurePort;
-        }
-        if (options.verbose) {
-            console.log('Running \'java ' + commandLineOptions.join(' ') + '\'');
-        }
-        mockServer = spawn('java', commandLineOptions, {
-            stdio: [ 'ignore', (options.verbose ? process.stdout : 'ignore'), process.stderr ]
+        // double check the jar has already been downloaded
+        require('./downloadJar').downloadJar('3.7').then(function () {
+
+            var spawn = require('child_process').spawn;
+            var glob = require('glob');
+            var commandLineOptions = ['-Dfile.encoding=UTF-8', '-Dmockserver.logLevel=WARN', '-jar', glob.sync('**/mockserver-netty-*-jar-with-dependencies.jar')];
+            if (options.serverPort) {
+                commandLineOptions.push("-serverPort");
+                commandLineOptions.push(options.serverPort);
+                testPort = testPort || options.serverPort;
+            }
+            if (options.serverSecurePort) {
+                commandLineOptions.push("-serverSecurePort");
+                commandLineOptions.push(options.serverSecurePort);
+                testPort = testPort || options.serverSecurePort;
+            }
+            if (options.proxyPort) {
+                commandLineOptions.push("-proxyPort");
+                commandLineOptions.push(options.proxyPort);
+                testPort = testPort || options.proxyPort;
+            }
+            if (options.proxySecurePort) {
+                commandLineOptions.push("-proxySecurePort");
+                commandLineOptions.push(options.proxySecurePort);
+                testPort = testPort || options.proxySecurePort;
+            }
+            if (options.verbose) {
+                console.log('Running \'java ' + commandLineOptions.join(' ') + '\'');
+            }
+            mockServer = spawn('java', commandLineOptions, {
+                stdio: [ 'ignore', (options.verbose ? process.stdout : 'ignore'), process.stderr ]
+            });
+
         });
 
         var numberOfRetries = 3500;
+
         function checkStarted() {
             var promise = sendRequest('http://localhost:' + testPort);
             return promise.then(
@@ -88,6 +94,7 @@ module.exports = (function () {
 
             var numberOfRetries = 3500;
             var deferred = Q.defer();
+
             function checkStopped() {
                 var promise = sendRequest('http://localhost:' + testPort);
                 return promise.then(
