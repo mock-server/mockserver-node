@@ -130,6 +130,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
  * 2014-02-11   v1.0.4   Upgraded MockServer version and build process
  * 2014-03-11   v1.0.5   Fixed important typo in read me
  * 2014-03-11   v1.0.6   Fixed missing dependency
+ * 2014-05-11   v1.0.7   Fixed issue #1 with bower & the jar file
 
 ---
 
