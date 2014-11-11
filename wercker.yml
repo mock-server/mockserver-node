@@ -5,7 +5,7 @@ build:
     - npm-install
     - wercker/grunt@1.0.0
     - grunt:
-        tasks: default
+        tasks: default --verbose
     - script:
         name: echo nodejs information
         code: |
