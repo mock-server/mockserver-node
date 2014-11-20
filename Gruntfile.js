@@ -55,7 +55,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('download_jar', 'Download latest MockServer jar version', function () {
         var done = this.async();
-        require('./downloadJar').downloadJar('3.7').then(function () {
+        require('./downloadJar').downloadJar('3.8').then(function () {
             done(true);
         }, function () {
             done(false);
@@ -72,5 +72,6 @@ module.exports = function (grunt) {
 
     grunt.registerTask('test', ['start_mockserver:start', 'nodeunit:started', 'stop_mockserver:stop', 'nodeunit:stopped']);
 
-    grunt.registerTask('default', ['exec', 'download_jar', 'jshint', 'test']);
+    grunt.registerTask('wrecker', ['download_jar', 'jshint', 'test']);
+    grunt.registerTask('default', ['exec', 'wrecker']);
 };

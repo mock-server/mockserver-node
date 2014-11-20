@@ -32,7 +32,7 @@ module.exports = (function () {
 
     function start_mockserver(options) {
         // double check the jar has already been downloaded
-        require('./downloadJar').downloadJar('3.7').then(function () {
+        require('./downloadJar').downloadJar('3.8').then(function () {
 
             var spawn = require('child_process').spawn;
             var glob = require('glob');
