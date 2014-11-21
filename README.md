@@ -133,6 +133,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
  * 2014-05-11   v1.0.7   Fixed issue #1 with bower & the jar file
  * 2014-20-11   v1.0.8   Upgrading MockServer & glob versions
  * 2014-20-11   v1.0.9   Upgrading MockServer to 3.8.1
+ * 2014-23-11   v1.0.10  Upgrading MockServer to 3.8.2
 
 ---
 
