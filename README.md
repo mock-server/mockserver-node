@@ -110,7 +110,7 @@ Default value: `false`
 
 This value indicates whether the MockServer logs should be written to the console.  In addition to logging additional output from the grunt task this options also increases the logging level of the MockServer. The MockServer logs are written to ```mockserver.log``` in the current directory.  It is also possible to use the ```--verbose``` command line switch to enabled verbose level logging from the command line.
 
-#### options.verbose
+#### options.javaDebugPort
 Type: `Integer`
 Default value: `undefined`
 
@@ -140,7 +140,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
  * 2014-20-11   v1.0.8   Upgrading MockServer & glob versions
  * 2014-20-11   v1.0.9   Upgrading MockServer to 3.8.1
  * 2014-23-11   v1.0.10  Upgrading MockServer to 3.8.2
- * 2014-03-12   v1.0.11  Add addition options and improved promise handling
+ * 2014-03-12   v1.0.11  Add additional options and improved promise handling
 
 ---
 
