@@ -28,8 +28,8 @@
     ],
     "dependencies": {
         "q": "~1.1",
-        "request": "~2.48",
-        "glob": "~4.2"
+        "request": "~2.49",
+        "glob": "~4.3"
     },
     "moduleType": [
         "node"
