@@ -108,13 +108,15 @@ This value indicates that you want to start the proxy using this value for the H
 Type: `Boolean`
 Default value: `false`
 
-This value indicates whether the MockServer logs should be written to the console.  In addition to logging additional output from the grunt task this options also increases the logging level of the MockServer. The MockServer logs are written to ```mockserver.log``` in the current directory.  It is also possible to use the ```--verbose``` command line switch to enabled verbose level logging from the command line.
+This value indicates whether the MockServer logs should be written to the console.  In addition to logging additional output from the grunt task this options also increases the logging level of the MockServer. The MockServer logs are written to ```mockserver.log``` in the current directory.  
+
+**Note:** It is also possible to use the ```--verbose``` command line switch to enabled verbose level logging from the command line.
 
 #### options.javaDebugPort
 Type: `Integer`
 Default value: `undefined`
 
-This value indicates whether Java debugging should be enabled and if so which port the debugger should listen on.  When this options is provided the following option is passed to the JVM ```-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=' + javaDebugPort```.  Note that ```suspend=y``` is used so the MockServer will pause until the debugger is attached.  The grunt task will wait 50 seconds for the debugger to be attached before it exits with a failure status.  
+This value indicates whether Java debugging should be enabled and if so which port the debugger should listen on.  When this options is provided the following option is passed to the JVM `"-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=" + javaDebugPort`.  Note that `suspend=y` is used so the MockServer will pause until the debugger is attached.  The grunt task will wait 50 seconds for the debugger to be attached before it exits with a failure status.  
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
