@@ -25,7 +25,12 @@ module.exports = function (grunt) {
 
     grunt.registerTask('stop_mockserver', 'Stop MockServer from grunt build', function() {
         var done = this.async();
-        mockServer.stop_mockserver();
-        done(true);
+        var options = this.options();
+        options.verbose = grunt.option('verbose');
+        mockServer.stop_mockserver(options).then(function() {
+            done(true);
+        }, function() {
+            done(false);
+        });
     });
 };

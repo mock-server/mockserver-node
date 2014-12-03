@@ -12,25 +12,86 @@ module.exports = (function () {
     var testPort;
 
     var Q = require('q');
-    var request = require('request');
+    var http = require('http');
 
-    function sendRequest(url) {
-        var deferred = Q.defer();
-        var options = {
-            method: 'GET',
-            url: url
-        };
-        request(options, function (error, response) {
-            if (error) {
-                deferred.reject(new Error(error));
+    function checkStarted(request, retries, promise, verbose) {
+        var deferred = promise || Q.defer();
+
+        var req = http.request(request);
+
+        req.once('response', function (response) {
+            var body = '';
+
+            response.on('data', function (chunk) {
+                body += chunk;
+            });
+
+            response.on('end', function () {
+                deferred.resolve({
+                    statusCode: response.statusCode,
+                    body: body
+                });
+            });
+        });
+
+        req.once('error', function (error) {
+            if (retries > 0) {
+                setTimeout(function () {
+                    verbose && console.log("waiting for MockServer to start retries remaining: " + retries);
+                    checkStarted(request, retries - 1, promise, verbose);
+                }, 100);
             } else {
-                deferred.resolve(response);
+                verbose && console.log("MockServer failed to start");
+                deferred.reject(error);
             }
         });
+
+        req.end();
+
+        return deferred.promise;
+    }
+
+    function checkStopped(request, retries, promise, verbose) {
+        var deferred = promise || Q.defer();
+
+        var req = http.request(request);
+
+        req.once('response', function (response) {
+            var body = '';
+
+            response.on('data', function (chunk) {
+                body += chunk;
+            });
+
+            response.on('end', function () {
+                if (retries > 0) {
+                    verbose && console.log("waiting for MockServer to stop retries remaining: " + retries);
+                    setTimeout(function () {
+                        checkStopped(request, retries - 1, promise, verbose)
+                    }, 100);
+                } else {
+                    verbose && console.log("MockServer failed to stop");
+                    deferred.reject();
+                }
+            });
+        });
+
+        req.once('error', function () {
+            deferred.resolve();
+        });
+
+        req.end();
+
         return deferred.promise;
     }
 
     function start_mockserver(options) {
+        var deferred = Q.defer();
+
+        if (!options) {
+            deferred.reject(new Error("options is falsy, it must be defined to specify the port(s) required to start the MockServer"))
+        }
+
         // double check the jar has already been downloaded
         require('./downloadJar').downloadJar('3.8.2').then(function () {
 
@@ -64,57 +125,30 @@ module.exports = (function () {
                 stdio: [ 'ignore', (options.verbose ? process.stdout : 'ignore'), process.stderr ]
             });
 
+        }).then(function () {
+            return checkStarted({
+                method: 'PUT',
+                host: "localhost",
+                path: "/reset",
+                port: testPort
+            }, 100, deferred, options.verbose); // up to 10 second delay
+        }, function (error) {
+            deferred.reject(error);
         });
 
-        var numberOfRetries = 3500;
-
-        function checkStarted() {
-            var promise = sendRequest('http://localhost:' + testPort);
-            return promise.then(
-                function () {
-                    return promise;
-                },
-                function () {
-                    if (numberOfRetries > 0) {
-                        numberOfRetries--;
-                        return checkStarted();
-                    } else {
-                        return promise;
-                    }
-                }
-            )
-        }
-
-        return checkStarted();
+        return deferred.promise;
     }
 
-    function stop_mockserver() {
-        if (mockServer) {
-            mockServer.kill();
-
-            var numberOfRetries = 3500;
+    function stop_mockserver(options) {
+        if (!mockServer || mockServer.kill()) {
             var deferred = Q.defer();
-
-            function checkStopped() {
-                var promise = sendRequest('http://localhost:' + testPort);
-                return promise.then(
-                    function () {
-                        if (numberOfRetries > 0) {
-                            numberOfRetries--;
-                            return checkStarted();
-                        } else {
-                            deferred.reject(new Error("Failed to stop MockServer"));
-                            return deferred.promise;
-                        }
-                    },
-                    function () {
-                        deferred.resolve();
-                        return deferred.promise;
-                    }
-                )
-            }
-
-            return checkStopped();
+            checkStopped({
+                method: 'PUT',
+                host: "localhost",
+                path: "/reset",
+                port: testPort
+            }, 100, deferred, options && options.verbose); // up to 10 second delay
+            return deferred.promise;
         }
     }
 
