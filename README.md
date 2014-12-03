@@ -116,7 +116,13 @@ This value indicates whether the MockServer logs should be written to the consol
 Type: `Integer`
 Default value: `undefined`
 
-This value indicates whether Java debugging should be enabled and if so which port the debugger should listen on.  When this options is provided the following option is passed to the JVM `"-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=" + javaDebugPort`.  Note that `suspend=y` is used so the MockServer will pause until the debugger is attached.  The grunt task will wait 50 seconds for the debugger to be attached before it exits with a failure status.  
+This value indicates whether Java debugging should be enabled and if so which port the debugger should listen on.  When this options is provided the following additional option is passed to the JVM:
+ 
+```bash
+"-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=" + javaDebugPort
+```  
+
+Note that `suspend=y` is used so the MockServer will pause until the debugger is attached.  The grunt task will wait 50 seconds for the debugger to be attached before it exits with a failure status.  
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
@@ -143,6 +149,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
  * 2014-20-11   v1.0.9   Upgrading MockServer to 3.8.1
  * 2014-23-11   v1.0.10  Upgrading MockServer to 3.8.2
  * 2014-03-12   v1.0.11  Add additional options and improved promise handling
+ * 2014-03-12   v1.0.12  Improved documentation
 
 ---
 
