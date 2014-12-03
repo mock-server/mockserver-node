@@ -92,12 +92,25 @@ module.exports = (function () {
             deferred.reject(new Error("options is falsy, it must be defined to specify the port(s) required to start the MockServer"))
         }
 
+        var startupRetries = 100; // wait for 10 seconds
+
         // double check the jar has already been downloaded
         require('./downloadJar').downloadJar('3.8.2').then(function () {
 
             var spawn = require('child_process').spawn;
             var glob = require('glob');
-            var commandLineOptions = ['-Dfile.encoding=UTF-8', '-Dmockserver.logLevel=WARN', '-jar', glob.sync('**/mockserver-netty-*-jar-with-dependencies.jar')];
+            var commandLineOptions = ['-Dfile.encoding=UTF-8'];
+            if (options.verbose) {
+                commandLineOptions.push('-Dmockserver.logLevel=TRACE');
+            } else {
+                commandLineOptions.push('-Dmockserver.logLevel=WARN');
+            }
+            if (options.javaDebugPort) {
+                commandLineOptions.push('-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=' + options.javaDebugPort);
+                startupRetries = 500;
+            }
+            commandLineOptions.push('-jar');
+            commandLineOptions.push(glob.sync('**/mockserver-netty-*-jar-with-dependencies.jar'));
             if (options.serverPort) {
                 commandLineOptions.push("-serverPort");
                 commandLineOptions.push(options.serverPort);
@@ -131,7 +144,7 @@ module.exports = (function () {
                 host: "localhost",
                 path: "/reset",
                 port: testPort
-            }, 100, deferred, options.verbose); // up to 10 second delay
+            }, startupRetries, deferred, options.verbose);
         }, function (error) {
             deferred.reject(error);
         });
@@ -147,7 +160,7 @@ module.exports = (function () {
                 host: "localhost",
                 path: "/reset",
                 port: testPort
-            }, 100, deferred, options && options.verbose); // up to 10 second delay
+            }, 100, deferred, options && options.verbose); // wait for 10 seconds
             return deferred.promise;
         }
     }
