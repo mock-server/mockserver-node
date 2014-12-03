@@ -2,30 +2,56 @@
 
     'use strict';
 
-    var testCase = require('nodeunit').testCase,
-        Q = require('q'),
-        request = require('request'),
-        sendRequest = function (method, url, jsonBody) {
-            var deferred = Q.defer();
-            var options = {
-                method: method,
-                url: url,
-                json: jsonBody
-            };
-            request(options, function (error, response) {
-                if (error) {
-                    deferred.reject(new Error(error));
-                } else {
-                    deferred.resolve(response);
-                }
-            });
-            return deferred.promise;
+    var testCase = require('nodeunit').testCase;
+    var http = require('http');
+    var Q = require('q');
+
+    function sendRequest(method, host, port, path, jsonBody) {
+        var deferred = Q.defer();
+
+        var body = (typeof jsonBody === "string" ? jsonBody : JSON.stringify(jsonBody || ""));
+        var options = {
+            method: method,
+            host: host,
+            path: path,
+            port: port
         };
+
+        var req = http.request(options);
+
+        req.once('response', function (response) {
+            var data = '';
+
+            if (response.statusCode === 400 || response.statusCode === 404) {
+                deferred.reject(response.statusCode);
+            }
+
+            response.on('data', function (chunk) {
+                data += chunk;
+            });
+
+            response.on('end', function () {
+                deferred.resolve({
+                    statusCode: response.statusCode,
+                    body: data
+                });
+            });
+        });
+
+        req.once('error', function (error) {
+            deferred.reject(error);
+        });
+
+        req.write(body);
+        req.end();
+
+        return deferred.promise;
+    }
 
     exports.mock_server_started = {
         'mock server should have started': testCase({
             'should allows expectation to be setup': function (test) {
-                sendRequest('PUT', "http://localhost:1080/expectation", {
+                sendRequest("PUT", "localhost", 1080, "/expectation", {
                     'httpRequest': {
                         'path': '/somePath'
                     },
@@ -40,7 +66,7 @@
                         test.ok(false, "failed to setup expectation");
                     })
                     .then(function () {
-                        sendRequest('GET', "http://localhost:1080/somePath")
+                        sendRequest("GET", "localhost", 1080, "/somePath")
                             .then(function (response) {
                                 test.equal(response.statusCode, 202, "expectation matched sucessfully");
                             }, function () {

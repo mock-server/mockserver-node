@@ -12,11 +12,15 @@
     function downloadJar(version) {
         var Q = require('q');
         var deferred = Q.defer();
-        var request = require('request');
+        var https = require('https');
         var fs = require('fs');
         var glob = require('glob');
-        var src = 'https://repo1.maven.org/maven2/org/mock-server/mockserver-netty/' + version + '/mockserver-netty-' + version + '-jar-with-dependencies.jar';
         var dest = 'mockserver-netty-' + version + '-jar-with-dependencies.jar';
+        var options = {
+            host: "repo1.maven.org",
+            path: "/maven2/org/mock-server/mockserver-netty/" + version + "/mockserver-netty-" + version + "-jar-with-dependencies.jar",
+            port: 443
+        };
 
         var currentMockServerJars = glob.sync('**/mockserver-netty-*-jar-with-dependencies.jar');
         if (currentMockServerJars.length > 1) {
@@ -29,23 +33,18 @@
         }
 
         if (currentMockServerJars.length === 0) {
-            console.log('Fetching ' + src);
+            console.log('Fetching ' + JSON.stringify(options));
+            var req = https.request(options);
 
-            var req = request({
-                uri: src
+            req.once('error', function (error) {
+                console.error('Fetching ' + JSON.stringify(options) + ' failed with error ' + error);
+                deferred.reject(new Error('Fetching ' + JSON.stringify(options) + ' failed with error ' + error));
             });
 
-            // On error, callback
-            req.on('error', function (error) {
-                console.error('Fetching ' + src + ' failed with error ' + error);
-                deferred.reject(new Error('Fetching ' + src + ' failed with error ' + error));
-            });
-
-            // On response, callback for writing out the stream
-            req.on('response', function handleResponse(res) {
+            req.once('response', function (res) {
                 if (res.statusCode < 200 || res.statusCode >= 300) {
-                    console.error('Fetching ' + src + ' failed with HTTP status code ' + res.statusCode);
-                    deferred.reject(new Error('Fetching ' + src + ' failed with HTTP status code ' + res.statusCode));
+                    console.error('Fetching ' + JSON.stringify(options) + ' failed with HTTP status code ' + res.statusCode);
+                    deferred.reject(new Error('Fetching ' + JSON.stringify(options) + ' failed with HTTP status code ' + res.statusCode));
                 }
 
                 var writeStream = fs.createWriteStream(dest);
@@ -56,12 +55,14 @@
                     deferred.reject(new Error('Saving ' + dest + ' failed with error ' + error));
                 });
                 writeStream.on('close', function () {
-                    console.log('Saved ' + dest + ' from ' + src);
+                    console.log('Saved ' + dest + ' from ' + JSON.stringify(options));
                     deferred.resolve();
                 });
             });
+
+            req.end();
         } else {
-            console.log('Skipping ' + src + ' as file already downloaded');
+            console.log('Skipping ' + JSON.stringify(options) + ' as file already downloaded');
             deferred.resolve();
         }
 
