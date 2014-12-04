@@ -1,6 +1,6 @@
 {
     "name": "mockserver-grunt",
-    "version": "1.0.12",
+    "version": "1.0.13",
     "homepage": "https://github.com/jamesdbloom/mockserver-grunt",
     "authors": [
         "James Bloom <jamesdbloom@gmail.com>"

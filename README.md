@@ -150,6 +150,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
  * 2014-23-11   v1.0.10  Upgrading MockServer to 3.8.2
  * 2014-03-12   v1.0.11  Add additional options and improved promise handling
  * 2014-03-12   v1.0.12  Improved documentation
+ * 2014-04-12   v1.0.13  Removed dependency on request module
 
 ---
 
