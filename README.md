@@ -140,11 +140,11 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
  * 2014-05-11   v1.0.7   Fixed issue #1 with bower & the jar file
  * 2014-20-11   v1.0.8   Upgrading MockServer & glob versions
  * 2014-20-11   v1.0.9   Upgrading MockServer to 3.8.1
- * 2014-23-11   v1.0.10  Upgrading MockServer to 3.8.2
- * 2014-03-12   v1.0.11  Add additional options and improved promise handling
- * 2014-03-12   v1.0.12  Improved documentation
- * 2014-04-12   v1.0.13  Removed dependency on request module
- * 2014-05-12   v1.0.15  Upgrading MockServer to 3.9.1
+ * 2014-23-11   v1.0.10   Upgrading MockServer to 3.8.2
+ * 2014-03-12   v1.0.11   Add additional options and improved promise handling
+ * 2014-03-12   v1.0.12   Improved documentation
+ * 2014-04-12   v1.0.13   Removed dependency on request module
+ * 2014-05-12   v1.0.15   Upgrading MockServer to 3.9.1
 
 ---
 
