@@ -47,9 +47,7 @@ mockserver.stop_mockserver();
 If you are only using the MockServer then only specify the MockServer port as follows:
 
 ```js
-mockserver.start_mockserver({
-                serverPort: 1080
-            });
+mockserver.start_mockserver({serverPort: 1080});
 
 // do something
 
