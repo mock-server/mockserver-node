@@ -53,6 +53,7 @@ mockserver.start_mockserver({serverPort: 1080});
 
 mockserver.stop_mockserver();
 ```
+The MockServer and the MockServer Proxy use port unification to support HTTP and HTTPS on the same port.  A client can then connect to the single port with both HTTP and HTTPS as the socket will automatically detected SSL traffic and decrypt it when required.
 
 ## Grunt Plugin
 
@@ -81,8 +82,6 @@ grunt.initConfig({
 
 grunt.loadNpmTasks('mockserver-grunt');
 ```
-
-The MockServer and the MockServer Proxy use port unification to support HTTP and HTTPS on the same port.  A client can then connect to the single port with both HTTP and HTTPS as the socket will automatically detected SSL traffic and decrypt it when required.
 
 ### Options
 
