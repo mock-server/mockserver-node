@@ -50,7 +50,7 @@ If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out th
 
 In your project's Gruntfile, add a section named `start_mockserver` and `stop_mockserver` to the data object passed into `grunt.initConfig()`.
 
-The following example will result in a both a MockServer and a MockServer Proxy being started on both HTTP and HTTPS ports. 
+The following example will result in a both a MockServer and a MockServer Proxy being started on ports `1080` and `1090`.   
 
 ```js
 grunt.initConfig({
@@ -72,7 +72,7 @@ grunt.initConfig({
 grunt.loadNpmTasks('mockserver-grunt');
 ```
 
-To control what is started only specify the ports you require. For example if you only want to start the MockServer for HTTP only provide this port, if you do this the proxy will not be started and the MockServer will not create an HTTPS endpoint. 
+The MockServer and the MockServer Proxy use port unification to support HTTP and HTTPS on the same port.  A client can then connect to the single port with both HTTP and HTTPS as the socket will automatically detected SSL traffic and decrypt it when required. 
 
 ### Options
 
