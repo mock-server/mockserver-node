@@ -29,9 +29,7 @@ module.exports = function (grunt) {
             start: {
                 options: {
                     serverPort: 1080,
-                    serverSecurePort: 1082,
-                    proxyPort: 1090,
-                    proxySecurePort: 1092
+                    proxyPort: 1090
                 }
             }
         },

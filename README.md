@@ -35,9 +35,7 @@ Then you can use either the `start_mockserver` or `stop_mockserver` functions as
 ```js
 mockserver.start_mockserver({
                 serverPort: 1080,
-                serverSecurePort: 1082,
                 proxyPort: 1090,
-                proxySecurePort: 1092,
                 verbose: true
             });
 
@@ -60,9 +58,7 @@ grunt.initConfig({
         start: {
             options: {
                 serverPort: 1080,
-                serverSecurePort: 1082,
-                proxyPort: 1090,
-                proxySecurePort: 1092
+                proxyPort: 1090
             }
         }
     },
