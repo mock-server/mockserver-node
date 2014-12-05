@@ -84,25 +84,13 @@ To control what is started only specify the ports you require. For example if yo
 Type: `Integer`
 Default value: `undefined`
 
-This value indicates that you want to start the MockServer using this value for the HTTP port.  The MockServer will only be started if either an HTTP i.e. `serverPort` or HTTPS i.e. `serverSecurePort` port is provided, if neither are provided the MockServer will not be started.
-
-#### options.serverSecurePort
-Type: `Integer`
-Default value: `undefined`
-
-This value indicates that you want to start the MockServer using this value for the HTTPS port.  The MockServer will only be started if either an HTTP i.e. `serverPort` or HTTPS i.e. `serverSecurePort` port is provided, if neither are provided the MockServer will not be started.
+This value specifies the HTTP and HTTPS port for the MockServer port unification is used to support HTTP and HTTPS on the same port.  The MockServer will only be started if a port is provided, if this value is left `undefined` the MockServer will not be started.
 
 #### options.proxyPort
 Type: `Integer`
 Default value: `undefined`
 
-This value indicates that you want to start the proxy using this value for the HTTP port.  The proxy will only be started if either an HTTP i.e. `proxyPort` or HTTPS i.e. `proxySecurePort` port is provided, if neither are provided the proxy will not be started.
-
-#### options.proxySecurePort
-Type: `Integer`
-Default value: `undefined`
-
-This value indicates that you want to start the proxy using this value for the HTTPS port.  The proxy will only be started if either an HTTP i.e. `proxyPort` or HTTPS i.e. `proxySecurePort` port is provided, if neither are provided the proxy will not be started.
+This value specifies the HTTP, HTTPS, SOCKS and HTTP CONNECT port for proxy, port unification is used to support all protocols on the same port.  The proxy will only be started if a port is provided, if this value is left `undefined` the proxy will not be started.
 
 #### options.verbose
 Type: `Boolean`
@@ -151,6 +139,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
  * 2014-03-12   v1.0.11  Add additional options and improved promise handling
  * 2014-03-12   v1.0.12  Improved documentation
  * 2014-04-12   v1.0.13  Removed dependency on request module
+ * 2014-05-12   v1.0.15  Upgrading MockServer to 3.9.1
 
 ---
 
