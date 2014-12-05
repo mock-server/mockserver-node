@@ -14,7 +14,7 @@ Grunt plugin to MockServer and the MockServer proxy to started and stopped from 
 [![NPM](https://nodei.co/npm/mockserver-grunt.png?downloads=true&stars=true)](https://nodei.co/npm/mockserver-grunt/) [![wercker status](https://app.wercker.com/status/762222be73287acc5013d8b186aacc5c/m "wercker status")](https://app.wercker.com/project/bykey/762222be73287acc5013d8b186aacc5c)
 
 ## Getting Started
-This node module can be used to start and stop [MockServer](http://mock-server.com/) and the [MockServer](http://mock-server.com/) proxy as a node module or as a Grunt plugin.
+This node module can be used to start and stop [MockServer](http://mock-server.com/) and the [MockServer](http://mock-server.com/) proxy as a node module or as a Grunt plugin.  More information about the [MockServer](http://mock-server.com/) can be found at [mock-server.com](http://mock-server.com/). 
 
 You may install this plugin / node module with the following command:
 
@@ -53,7 +53,7 @@ mockserver.start_mockserver({serverPort: 1080});
 
 mockserver.stop_mockserver();
 ```
-The MockServer and the MockServer Proxy use port unification to support HTTP and HTTPS on the same port.  A client can then connect to the single port with both HTTP and HTTPS as the socket will automatically detected SSL traffic and decrypt it when required.
+The MockServer and the MockServer proxy use port unification to support HTTP and HTTPS on the same port.  A client can then connect to the single port with both HTTP and HTTPS as the socket will automatically detected SSL traffic and decrypt it when required.
 
 ## Grunt Plugin
 
@@ -61,7 +61,7 @@ If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out th
 
 In your project's Gruntfile, add a section named `start_mockserver` and `stop_mockserver` to the data object passed into `grunt.initConfig()`.
 
-The following example will result in a both a MockServer and a MockServer Proxy being started on ports `1080` and `1090`.   
+The following example will result in a both a MockServer and a MockServer proxy being started on ports `1080` and `1090`.   
 
 ```js
 grunt.initConfig({
