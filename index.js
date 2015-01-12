@@ -125,7 +125,7 @@ module.exports = (function () {
                 console.log('Running \'java ' + commandLineOptions.join(' ') + '\'');
             }
             mockServer = spawn('java', commandLineOptions, {
-                stdio: [ 'ignore', (options.verbose ? process.stdout : 'ignore'), process.stderr ]
+                stdio: ['ignore', (options.verbose ? process.stdout : 'ignore'), process.stderr]
             });
 
         }).then(function () {
@@ -143,16 +143,23 @@ module.exports = (function () {
     }
 
     function stop_mockserver(options) {
-        if (!mockServer || mockServer.kill()) {
-            var deferred = Q.defer();
+        var deferred = Q.defer();
+        if (mockServer && mockServer.kill()) {
             checkStopped({
                 method: 'PUT',
                 host: "localhost",
                 path: "/reset",
                 port: testPort
             }, 100, deferred, options && options.verbose); // wait for 10 seconds
-            return deferred.promise;
+        } else {
+            checkStopped({
+                method: 'PUT',
+                host: "localhost",
+                path: "/stop",
+                port: testPort
+            }, 100, deferred, options && options.verbose); // wait for 10 seconds
         }
+        return deferred.promise;
     }
 
     return {
