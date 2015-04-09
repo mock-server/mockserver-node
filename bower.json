@@ -1,6 +1,6 @@
 {
     "name": "mockserver-grunt",
-    "version": "1.0.14",
+    "version": "1.0.16",
     "homepage": "https://github.com/jamesdbloom/mockserver-grunt",
     "authors": [
         "James Bloom <jamesdbloom@gmail.com>"
@@ -27,8 +27,8 @@
         "*.yml"
     ],
     "dependencies": {
-        "q": "~1.1",
-        "glob": "~4.3"
+        "q": "~2.0",
+        "glob": "~5.0"
     },
     "moduleType": [
         "node"
