@@ -100,8 +100,10 @@ module.exports = (function () {
             var spawn = require('child_process').spawn;
             var glob = require('glob');
             var commandLineOptions = ['-Dfile.encoding=UTF-8'];
-            if (options.verbose) {
+            if (options.trace) {
                 commandLineOptions.push('-Dmockserver.logLevel=TRACE');
+            } else if (options.verbose) {
+                commandLineOptions.push('-Dmockserver.logLevel=INFO');
             } else {
                 commandLineOptions.push('-Dmockserver.logLevel=WARN');
             }

@@ -149,6 +149,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
  * 2015-04-09   v1.0.16  Upgrading MockServer to 3.9.6
  * 2015-04-09   v1.0.17  Re-publishing as previous failed
  * 2015-04-10   v1.0.18  Upgrading MockServer to improve logging
+ * 2015-04-10   v1.0.19  Improved jar download & logging switches
 
 ---
 
