@@ -53,11 +53,21 @@ module.exports = function (grunt) {
 
     grunt.registerTask('download_jar', 'Download latest MockServer jar version', function () {
         var done = this.async();
-        require('./downloadJar').downloadJar('3.9.6').then(function () {
+        require('./downloadJar').downloadJar('3.9.7').then(function () {
             done(true);
         }, function () {
             done(false);
         });
+    });
+
+    grunt.registerTask('deleted_jars', 'Delete any old MockServer jars', function() {
+        var fs = require('fs');
+        var currentMockServerJars = require('glob').sync('**/mockserver-netty-*-jar-with-dependencies.jar');        
+        currentMockServerJars.forEach(function (item) {
+            fs.unlinkSync(item);
+            console.log('Deleted ' + item);
+        });
+        currentMockServerJars.splice(0);
     });
 
     // load this plugin's task
@@ -70,6 +80,6 @@ module.exports = function (grunt) {
 
     grunt.registerTask('test', ['start_mockserver:start', 'nodeunit:started', 'stop_mockserver:stop', 'nodeunit:stopped']);
 
-    grunt.registerTask('wrecker', ['download_jar', 'jshint', 'test']);
+    grunt.registerTask('wrecker', ['deleted_jars', 'download_jar', 'jshint', 'test']);
     grunt.registerTask('default', ['exec', 'wrecker']);
 };

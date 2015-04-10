@@ -17,8 +17,8 @@
         var glob = require('glob');
         var dest = 'mockserver-netty-' + version + '-jar-with-dependencies.jar';
         var options = {
-            host: "repo1.maven.org",
-            path: "/maven2/org/mock-server/mockserver-netty/" + version + "/mockserver-netty-" + version + "-jar-with-dependencies.jar",
+            host: "oss.sonatype.org",
+            path: "/content/repositories/releases/org/mock-server/mockserver-netty/" + version + "/mockserver-netty-" + version + "-jar-with-dependencies.jar",
             port: 443
         };
 

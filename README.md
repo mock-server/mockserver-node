@@ -146,8 +146,9 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
  * 2014-04-12   v1.0.13  Removed dependency on request module
  * 2014-05-12   v1.0.14  Upgrading MockServer to 3.9.1
  * 2015-04-06   v1.0.15  Upgrading MockServer to 3.9.3
- * 2015-04-06   v1.0.16  Upgrading MockServer to 3.9.6
- * 2015-04-06   v1.0.17  Re-publishing as previous failed
+ * 2015-04-09   v1.0.16  Upgrading MockServer to 3.9.6
+ * 2015-04-09   v1.0.17  Re-publishing as previous failed
+ * 2015-04-10   v1.0.18  Upgrading MockServer to improve logging
 
 ---
 
