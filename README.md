@@ -151,6 +151,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
  * 2015-04-10   v1.0.18  Upgrading MockServer to improve logging
  * 2015-04-10   v1.0.19  Improved jar download & logging switches
  * 2015-04-14   v1.0.20  Upgraded MockServer to improve SOCKS proxy
+ * 2015-04-14   v1.0.21  Re-publishing as previous failed
 
 ---
 
