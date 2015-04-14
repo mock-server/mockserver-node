@@ -95,7 +95,7 @@ module.exports = (function () {
         var startupRetries = 100; // wait for 10 seconds
 
         // double check the jar has already been downloaded
-        require('./downloadJar').downloadJar('3.9.7').then(function () {
+        require('./downloadJar').downloadJar('3.9.8').then(function () {
 
             var spawn = require('child_process').spawn;
             var glob = require('glob');
@@ -122,6 +122,14 @@ module.exports = (function () {
                 commandLineOptions.push("-proxyPort");
                 commandLineOptions.push(options.proxyPort);
                 testPort = testPort || options.proxyPort;
+            }
+            if (options.proxyRemotePort) {
+                commandLineOptions.push("-proxyRemotePort");
+                commandLineOptions.push(options.proxyRemotePort);
+            }
+            if (options.proxyRemoteHost) {
+                commandLineOptions.push("-proxyRemoteHost");
+                commandLineOptions.push(options.proxyRemoteHost);
             }
             if (options.verbose) {
                 console.log('Running \'java ' + commandLineOptions.join(' ') + '\'');
