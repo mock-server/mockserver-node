@@ -101,9 +101,15 @@ This value specifies the HTTP, HTTPS, SOCKS and HTTP CONNECT port for proxy, por
 Type: `Boolean`
 Default value: `false`
 
-This value indicates whether the MockServer logs should be written to the console.  In addition to logging additional output from the grunt task this options also increases the logging level of the MockServer. The MockServer logs are written to ```mockserver.log``` in the current directory.  
+This value indicates whether the MockServer logs should be written to the console.  In addition to logging additional output from the grunt task this options also sets the logging level of the MockServer to [*INFO*](http://www.mock-server.com/mock_server/debugging_issues.html). At *INFO* level all interactions with the MockServer including setting up expectations, matching expectations, clearing expectations and verifying requests are written to the log. The MockServer logs are written to ```mockserver.log``` in the current directory.  
 
 **Note:** It is also possible to use the ```--verbose``` command line switch to enabled verbose level logging from the command line.
+
+#### options.trace
+Type: `Boolean`
+Default value: `false`
+
+This value sets the logging level of the MockServer to [*TRACE*](http://www.mock-server.com/mock_server/debugging_issues.html). At *TRACE* level (in addition to *INFO* level information) all matcher results, including when specific matchers fail (such as HeaderMatcher) are written to the log. The MockServer logs are written to ```mockserver.log``` in the current directory. 
 
 #### options.javaDebugPort
 Type: `Integer`
