@@ -24,7 +24,7 @@ npm install mockserver-grunt --save-dev
 
 ## Node Module
 
-To start or stop the MockServer from any node.js code you need to import this module using `require('mockserver-grunt')` as follows:
+To start or stop the MockServer from any Node.js code you need to import this module using `require('mockserver-grunt')` as follows:
 
 ```js
 var mockserver = require('mockserver-grunt');
