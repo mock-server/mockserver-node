@@ -95,7 +95,7 @@ module.exports = (function () {
         var startupRetries = 100; // wait for 10 seconds
 
         // double check the jar has already been downloaded
-        require('./downloadJar').downloadJar('3.9.8').then(function () {
+        require('./downloadJar').downloadJar('3.9.11').then(function () {
 
             var spawn = require('child_process').spawn;
             var glob = require('glob');
