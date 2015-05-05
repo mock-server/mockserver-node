@@ -159,6 +159,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
  * 2015-04-14   v1.0.20  Upgraded MockServer to improve SOCKS proxy
  * 2015-04-14   v1.0.21  Re-publishing as previous failed
  * 2015-05-01   v1.0.23  Upgrading MockServer version and improving stop script
+ * 2015-05-05   v1.0.24  Trying to fix missing file in npm module caused by `npm publish` failing
 
 ---
 
