@@ -8,7 +8,7 @@ Node module and grunt plugin to start and stop [MockServer](http://mock-server.c
 [![Still Maintained](http://stillmaintained.com/jamesdbloom/mockserver.png)](http://stillmaintained.com/jamesdbloom/mockserver) 
 
 
-[![Stories in Backlog](https://badge.waffle.io/jamesdbloom/mockserver.png?label=proposal&title=Proposals)](https://waffle.io/jamesdbloom/mockserver) [![Stories in Backlog](https://badge.waffle.io/jamesdbloom/mockserver.png?label=ready&title=Ready)](https://waffle.io/jamesdbloom/mockserver) [![Stories in Backlog](https://badge.waffle.io/jamesdbloom/mockserver.png?label=in%20progress&title=In%20Progress)](https://waffle.io/jamesdbloom/mockserver)
+[![Stories in Backlog](https://badge.waffle.io/jamesdbloom/mockserver.png?label=proposal&title=Proposals)](https://waffle.io/jamesdbloom/mockserver) [![Stories in Backlog](https://badge.waffle.io/jamesdbloom/mockserver.png?label=ready&title=Ready)](https://waffle.io/jamesdbloom/mockserver) [![Stories in Backlog](https://badge.waffle.io/jamesdbloom/mockserver.png?label=in%20progress&title=In%20Progress)](https://waffle.io/jamesdbloom/mockserver) [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/jamesdbloom/mockserver-grunt/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 
 [![NPM](https://nodei.co/npm/mockserver-grunt.png?downloads=true&stars=true)](https://nodei.co/npm/mockserver-grunt/) [![wercker status](https://app.wercker.com/status/762222be73287acc5013d8b186aacc5c/m "wercker status")](https://app.wercker.com/project/bykey/762222be73287acc5013d8b186aacc5c)
@@ -165,7 +165,3 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 ---
 
 Task submitted by [James D Bloom](http://blog.jamesdbloom.com)
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/jamesdbloom/mockserver-grunt/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
