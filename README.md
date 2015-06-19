@@ -165,3 +165,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 ---
 
 Task submitted by [James D Bloom](http://blog.jamesdbloom.com)
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/jamesdbloom/mockserver-grunt/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
