@@ -161,6 +161,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
  * 2015-05-01   v1.0.23  Upgrading MockServer version and improving stop script
  * 2015-05-05   v1.0.24  Trying to fix missing file in npm module caused by `npm publish` failing
  * 2015-06-02   v1.0.25  Upgrading MockServer to 3.9.15
+ * 2015-06-20   v1.0.26  Upgrading MockServer to 3.9.16
 
 ---
 
