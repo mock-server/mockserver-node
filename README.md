@@ -1,8 +1,6 @@
 # mockserver-grunt 
 
-> Node module and grunt plugin to start and stop [MockServer](http://mock-server.com/)
-
-Node module and grunt plugin to start and stop [MockServer](http://mock-server.com/) and [MockServer](http://mock-server.com/) proxy.
+> Node module and grunt plugin to start and stop [MockServer](http://mock-server.com/) and [MockServer](http://mock-server.com/) proxy
 
 [![Build Status](https://drone.io/github.com/jamesdbloom/mockserver-grunt/status.png)](https://drone.io/github.com/jamesdbloom/mockserver-grunt/latest) [![Dependency Status](https://david-dm.org/jamesdbloom/mockserver-grunt.png)](https://david-dm.org/jamesdbloom/mockserver-grunt) [![devDependency Status](https://david-dm.org/jamesdbloom/mockserver-grunt/dev-status.png)](https://david-dm.org/jamesdbloom/mockserver-grunt#info=devDependencies)
 
