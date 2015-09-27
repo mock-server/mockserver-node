@@ -85,6 +85,35 @@ module.exports = (function () {
         return deferred.promise;
     }
 
+    function sendRequest(request) {
+        var deferred = Q.defer();
+
+        var callback = function (response) {
+            var body = '';
+
+            if (response.statusCode === 400 || response.statusCode === 404) {
+                deferred.reject(response.statusCode);
+            }
+
+            response.on('data', function (chunk) {
+                body += chunk;
+            });
+
+            response.on('end', function () {
+                deferred.resolve({
+                    statusCode: response.statusCode,
+                    headers: response.headers,
+                    body: body
+                });
+            });
+        };
+
+        var req = http.request(request, callback);
+        req.end();
+
+        return deferred.promise;
+    }
+
     function start_mockserver(options) {
         var deferred = Q.defer();
 
@@ -154,21 +183,20 @@ module.exports = (function () {
 
     function stop_mockserver(options) {
         var deferred = Q.defer();
-        if (mockServer && mockServer.kill()) {
+        sendRequest({
+            method: 'PUT',
+            host: "localhost",
+            path: "/stop",
+            port: testPort
+        }).then(function () {
+            mockServer && mockServer.kill();
             checkStopped({
                 method: 'PUT',
                 host: "localhost",
                 path: "/reset",
                 port: testPort
             }, 100, deferred, options && options.verbose); // wait for 10 seconds
-        } else {
-            checkStopped({
-                method: 'PUT',
-                host: "localhost",
-                path: "/stop",
-                port: testPort
-            }, 100, deferred, options && options.verbose); // wait for 10 seconds
-        }
+        });
         return deferred.promise;
     }
 
