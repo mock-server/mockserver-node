@@ -8,7 +8,7 @@
 [![NPM](https://nodei.co/npm/mockserver-grunt.png?downloads=true&stars=true)](https://nodei.co/npm/mockserver-grunt/) [![wercker status](https://app.wercker.com/status/762222be73287acc5013d8b186aacc5c/m "wercker status")](https://app.wercker.com/project/bykey/762222be73287acc5013d8b186aacc5c)
 
 
-For chat room: [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/jamesdbloom/mockserver?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+For chat room: [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/jamesdbloom/mockserver?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 
 ## Getting Started
