@@ -161,6 +161,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
  * 2015-06-02   v1.0.25  Upgrading MockServer to 3.9.15
  * 2015-06-20   v1.0.26  Upgrading MockServer to 3.9.16
  * 2015-06-30   v1.0.27  Upgrading MockServer to 3.9.17
+ * 2015-09-27   v1.0.28  Upgrading MockServer to 3.10.0
 
 ---
 
