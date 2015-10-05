@@ -163,6 +163,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
  * 2015-06-30   v1.0.27  Upgrading MockServer to 3.9.17
  * 2015-09-27   v1.0.28  Upgrading MockServer to 3.10.0
  * 2015-09-27   v1.0.29  Improved the way MockServer is stopped
+ * 2015-10-05   v1.0.30  Upgrading MockServer to 3.10.1
 
 ---
 
