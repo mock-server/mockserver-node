@@ -12,7 +12,7 @@ module.exports = function (grunt) {
 
     var mockServer = require('../index.js');
 
-    grunt.registerMultiTask('start_mockserver', 'Run MockServer from grunt build', function () {
+    grunt.registerTask('start_mockserver', 'Run MockServer from grunt build', function () {
         var done = this.async();
         var options = this.options();
         options.verbose = grunt.option('verbose');

@@ -39,7 +39,11 @@ mockserver.start_mockserver({
 
 // do something
 
-mockserver.stop_mockserver();
+mockserver.stop_mockserver({
+                serverPort: 1080,
+                proxyPort: 1090,
+                verbose: true
+            });
 ```
 
 If you are only using the MockServer then only specify the MockServer port as follows:
@@ -49,9 +53,9 @@ mockserver.start_mockserver({serverPort: 1080});
 
 // do something
 
-mockserver.stop_mockserver();
+mockserver.stop_mockserver({serverPort: 1080});
 ```
-The MockServer and the MockServer proxy use port unification to support HTTP and HTTPS on the same port.  A client can then connect to the single port with both HTTP and HTTPS as the socket will automatically detected SSL traffic and decrypt it when required.
+The MockServer and the MockServer Proxy use port unification to support HTTP and HTTPS on the same port.  A client can then connect to the single port with both HTTP and HTTPS as the socket will automatically detected SSL traffic and decrypt it when required.
 
 ## Grunt Plugin
 
@@ -59,21 +63,20 @@ If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out th
 
 In your project's Gruntfile, add a section named `start_mockserver` and `stop_mockserver` to the data object passed into `grunt.initConfig()`.
 
-The following example will result in a both a MockServer and a MockServer proxy being started on ports `1080` and `1090`.   
+The following example will result in a both a MockServer and a MockServer Proxy being started on ports `1080` and `1090`.
 
 ```js
 grunt.initConfig({
     start_mockserver: {
-        start: {
-            options: {
-                serverPort: 1080,
-                proxyPort: 1090
-            }
+        options: {
+            serverPort: 1080,
+            proxyPort: 1090
         }
     },
     stop_mockserver: {
-        stop: {
-    
+        options: {
+            serverPort: 1080,
+            proxyPort: 1090
         }
     }
 });

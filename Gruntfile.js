@@ -26,16 +26,15 @@ module.exports = function (grunt) {
             }
         },
         start_mockserver: {
-            start: {
-                options: {
-                    serverPort: 1080,
-                    proxyPort: 1090
-                }
+            options: {
+                serverPort: 1080,
+                proxyPort: 1090
             }
         },
         stop_mockserver: {
-            stop: {
-
+            options: {
+                serverPort: 1080,
+                proxyPort: 1090
             }
         },
         nodeunit: {
@@ -60,9 +59,9 @@ module.exports = function (grunt) {
         });
     });
 
-    grunt.registerTask('deleted_jars', 'Delete any old MockServer jars', function() {
+    grunt.registerTask('deleted_jars', 'Delete any old MockServer jars', function () {
         var fs = require('fs');
-        var currentMockServerJars = require('glob').sync('**/mockserver-netty-*-jar-with-dependencies.jar');        
+        var currentMockServerJars = require('glob').sync('**/mockserver-netty-*-jar-with-dependencies.jar');
         currentMockServerJars.forEach(function (item) {
             fs.unlinkSync(item);
             console.log('Deleted ' + item);
@@ -78,7 +77,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-nodeunit');
 
-    grunt.registerTask('test', ['start_mockserver:start', 'nodeunit:started', 'stop_mockserver:stop', 'nodeunit:stopped']);
+    grunt.registerTask('test', ['start_mockserver', 'nodeunit:started', 'stop_mockserver', 'nodeunit:stopped']);
 
     grunt.registerTask('wrecker', ['deleted_jars', 'download_jar', 'jshint', 'test']);
     grunt.registerTask('default', ['exec', 'wrecker']);

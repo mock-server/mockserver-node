@@ -9,7 +9,7 @@
 module.exports = (function () {
 
     var mockServer;
-    var testPort;
+    var port;
 
     var Q = require('q');
     var http = require('http');
@@ -145,12 +145,12 @@ module.exports = (function () {
             if (options.serverPort) {
                 commandLineOptions.push("-serverPort");
                 commandLineOptions.push(options.serverPort);
-                testPort = testPort || options.serverPort;
+                port = port || options.serverPort;
             }
             if (options.proxyPort) {
                 commandLineOptions.push("-proxyPort");
                 commandLineOptions.push(options.proxyPort);
-                testPort = testPort || options.proxyPort;
+                port = port || options.proxyPort;
             }
             if (options.proxyRemotePort) {
                 commandLineOptions.push("-proxyRemotePort");
@@ -172,7 +172,7 @@ module.exports = (function () {
                 method: 'PUT',
                 host: "localhost",
                 path: "/reset",
-                port: testPort
+                port: port
             }, startupRetries, deferred, options.verbose);
         }, function (error) {
             deferred.reject(error);
@@ -183,18 +183,27 @@ module.exports = (function () {
 
     function stop_mockserver(options) {
         var deferred = Q.defer();
+        if (options.serverPort) {
+            port = port || options.serverPort;
+        }
+        if (options.proxyPort) {
+            port = port  || options.proxyPort;
+        }
+        if (options.verbose) {
+            console.log('Using port \'' + port + '\' to stop MockServer and MockServer Proxy');
+        }
         sendRequest({
             method: 'PUT',
             host: "localhost",
             path: "/stop",
-            port: testPort
+            port: port
         }).then(function () {
             mockServer && mockServer.kill();
             checkStopped({
                 method: 'PUT',
                 host: "localhost",
                 path: "/reset",
-                port: testPort
+                port: port
             }, 100, deferred, options && options.verbose); // wait for 10 seconds
         });
         return deferred.promise;
