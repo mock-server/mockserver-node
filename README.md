@@ -2,7 +2,7 @@
 
 > Node module and grunt plugin to start and stop [MockServer](http://mock-server.com/) and [MockServer](http://mock-server.com/) proxy
 
-[![Build Status](https://drone.io/github.com/jamesdbloom/mockserver-grunt/status.png)](https://drone.io/github.com/jamesdbloom/mockserver-grunt/latest) [![Dependency Status](https://david-dm.org/jamesdbloom/mockserver-grunt.png)](https://david-dm.org/jamesdbloom/mockserver-grunt) [![devDependency Status](https://david-dm.org/jamesdbloom/mockserver-grunt/dev-status.png)](https://david-dm.org/jamesdbloom/mockserver-grunt#info=devDependencies)
+[![Build Status](https://snap-ci.com/jamesdbloom/mockserver-grunt/branch/master/build_image)](https://snap-ci.com/jamesdbloom/mockserver-grunt/branch/master) [![Build Status](https://drone.io/github.com/jamesdbloom/mockserver-grunt/status.png)](https://drone.io/github.com/jamesdbloom/mockserver-grunt/latest) [![Dependency Status](https://david-dm.org/jamesdbloom/mockserver-grunt.png)](https://david-dm.org/jamesdbloom/mockserver-grunt) [![devDependency Status](https://david-dm.org/jamesdbloom/mockserver-grunt/dev-status.png)](https://david-dm.org/jamesdbloom/mockserver-grunt#info=devDependencies)
 
 <!-- [![NPM](https://nodei.co/npm/mockserver-grunt.png?downloads=true&stars=true)](https://nodei.co/npm/mockserver-grunt/)  -->
 [![wercker status](https://app.wercker.com/status/762222be73287acc5013d8b186aacc5c/m "wercker status")](https://app.wercker.com/project/bykey/762222be73287acc5013d8b186aacc5c)
