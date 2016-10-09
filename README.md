@@ -169,6 +169,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
  * 2015-10-05   v1.0.30  Upgrading MockServer to 3.10.1
  * 2016-09-27   v1.0.31  Updated dependencies
  * 2016-09-27   v1.0.32  Fixed bug #8
+ * 2016-10-09   v1.0.33  Resolved issues with dependencies
 
 ---
 
