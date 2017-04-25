@@ -20,7 +20,7 @@
         "node": ">= 0.8.0"
     },
     "scripts": {
-        "test": "grunt travis --verbose"
+        "test": "grunt travis"
     },
     "files": [
         "mockserver-netty-*-jar-with-dependencies.jar",
