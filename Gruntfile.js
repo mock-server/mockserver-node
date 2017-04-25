@@ -79,6 +79,6 @@ module.exports = function (grunt) {
 
     grunt.registerTask('test', ['start_mockserver', 'nodeunit:started', 'stop_mockserver', 'nodeunit:stopped']);
 
-    grunt.registerTask('wrecker', ['deleted_jars', 'download_jar', 'jshint', 'test']);
-    grunt.registerTask('default', ['exec', 'wrecker']);
+    grunt.registerTask('default', ['exec', 'deleted_jars', 'download_jar', 'jshint', 'test']);
+    grunt.registerTask('travis', ['default']);
 };
