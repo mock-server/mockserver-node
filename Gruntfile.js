@@ -52,7 +52,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('download_jar', 'Download latest MockServer jar version', function () {
         var done = this.async();
-        require('./downloadJar').downloadJar('3.10.4').then(function () {
+        require('./downloadJar').downloadJar('3.10.5').then(function () {
             done(true);
         }, function () {
             done(false);
