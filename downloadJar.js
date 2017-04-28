@@ -73,4 +73,3 @@
         downloadJar: downloadJar
     };
 })();
-
