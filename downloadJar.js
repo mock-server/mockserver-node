@@ -9,7 +9,7 @@
 (function () {
     "use strict";
 
-    function downloadJar(version) {
+    function downloadJar(version, artifactoryHost, artifactoryPath) {
         var Q = require('q');
         var deferred = Q.defer();
         var https = require('https');
@@ -17,8 +17,8 @@
         var glob = require('glob');
         var dest = 'mockserver-netty-' + version + '-jar-with-dependencies.jar';
         var options = {
-            host: "oss.sonatype.org",
-            path: "/content/repositories/releases/org/mock-server/mockserver-netty/" + version + "/mockserver-netty-" + version + "-jar-with-dependencies.jar",
+            host: artifactoryHost,
+            path: artifactoryPath + version + "/mockserver-netty-" + version + "-jar-with-dependencies.jar",
             port: 443
         };
 
