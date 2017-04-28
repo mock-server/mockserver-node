@@ -16,8 +16,12 @@ module.exports = (function () {
     var Q = require('q');
     var http = require('http');
 
+    function defer() {
+        return (global.protractor ? protractor.promise : Q).defer();
+    }
+
     function checkStarted(request, retries, promise, verbose) {
-        var deferred = promise || Q.defer();
+        var deferred = promise || defer();
 
         var req = http.request(request);
 
@@ -54,7 +58,7 @@ module.exports = (function () {
     }
 
     function checkStopped(request, retries, promise, verbose) {
-        var deferred = promise || Q.defer();
+        var deferred = promise || defer();
 
         var req = http.request(request);
 
@@ -88,7 +92,7 @@ module.exports = (function () {
     }
 
     function sendRequest(request) {
-        var deferred = Q.defer();
+        var deferred = defer();
 
         var callback = function (response) {
             var body = '';
@@ -117,7 +121,7 @@ module.exports = (function () {
     }
 
     function start_mockserver(options) {
-        var deferred = Q.defer();
+        var deferred = defer();
 
         if (!options) {
             deferred.reject(new Error("options is falsy, it must be defined to specify the port(s) required to start the MockServer"))
@@ -192,7 +196,7 @@ module.exports = (function () {
     }
 
     function stop_mockserver(options) {
-        var deferred = Q.defer();
+        var deferred = defer();
         if (options.serverPort) {
             port = port || options.serverPort;
         }
