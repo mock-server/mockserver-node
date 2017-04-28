@@ -97,6 +97,18 @@ Default value: `undefined`
 
 This value specifies the HTTP, HTTPS, SOCKS and HTTP CONNECT port for proxy, port unification is used to support all protocols on the same port.  The proxy will only be started if a port is provided, if this value is left `undefined` the proxy will not be started.
 
+#### options.artifactoryHost
+
+Type: `String` Default value: `oss.sonatype.org`
+
+This value specifies the name of the artifact repository host.
+
+#### options.artifactoryPath
+
+Type: `String` Default value: `/content/repositories/releases/org/mock-server/mockserver-netty/`
+
+This value specifies the path to the artifactory leading to the mockserver-netty jar with dependencies.
+
 #### options.verbose
 Type: `Boolean`
 Default value: `false`
