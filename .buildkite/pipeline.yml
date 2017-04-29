@@ -1,0 +1,13 @@
+steps:
+  - label: "update docker image"
+    command: "docker pull jamesdbloom/mockserver:build"
+
+  - wait
+
+  - label: "install node modules"
+    command: "npm install -g grunt-cli && npm install"
+
+  - wait
+
+  - label: "build"
+    command: "grunt"
