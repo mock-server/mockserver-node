@@ -24,7 +24,8 @@
         ".*",
         "Gruntfile.js",
         "*.iml",
-        "*.yml"
+        "*.yml",
+        "*.jar"
     ],
     "dependencies": {
         "q": "~2.0",
