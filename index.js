@@ -160,6 +160,9 @@ module.exports = (function () {
                 commandLineOptions.push('-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=' + options.javaDebugPort);
                 startupRetries = 500;
             }
+            if (options.systemProperties) {
+                commandLineOptions.push(options.systemProperties);
+            }
             commandLineOptions.push('-jar');
             commandLineOptions.push(glob.sync('**/mockserver-netty-*-jar-with-dependencies.jar'));
             if (options.serverPort) {

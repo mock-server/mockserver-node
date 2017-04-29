@@ -98,14 +98,14 @@ Default value: `undefined`
 This value specifies the HTTP, HTTPS, SOCKS and HTTP CONNECT port for proxy, port unification is used to support all protocols on the same port.  The proxy will only be started if a port is provided, if this value is left `undefined` the proxy will not be started.
 
 #### options.artifactoryHost
-
-Type: `String` Default value: `oss.sonatype.org`
+Type: `String` 
+Default value: `oss.sonatype.org`
 
 This value specifies the name of the artifact repository host.
 
 #### options.artifactoryPath
-
-Type: `String` Default value: `/content/repositories/releases/org/mock-server/mockserver-netty/`
+Type: `String` 
+Default value: `/content/repositories/releases/org/mock-server/mockserver-netty/`
 
 This value specifies the path to the artifactory leading to the mockserver-netty jar with dependencies.
 
@@ -133,7 +133,23 @@ This value indicates whether Java debugging should be enabled and if so which po
 "-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=" + javaDebugPort
 ```  
 
-Note that `suspend=y` is used so the MockServer will pause until the debugger is attached.  The grunt task will wait 50 seconds for the debugger to be attached before it exits with a failure status.  
+Note that `suspend=y` is used so the MockServer will pause until the debugger is attached.  The grunt task will wait 50 seconds for the debugger to be attached before it exits with a failure status.
+  
+#### options.systemProperties
+Type: `String`
+Default value: `undefined`
+
+This value allows any system properties to be passed to the JVM that runs MockServer, for example:
+ 
+```js
+start_mockserver: {
+    options: {
+        serverPort: 1080,
+        proxyPort: 1090,
+        systemProperties: "-Dmockserver.enableCORSForAllResponses=true"
+    }
+}
+```  
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
@@ -185,6 +201,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
  * 2017-04-26   v1.0.35  Removing jar from module
  * 2017-04-27   v1.0.36  Updated MockServer to 3.10.6
  * 2017-04-29   v1.0.37  Updated build badge and flexible artifactory
+ * 2017-04-30   v1.0.38  Added support for generic system properties
 
 ---
 
