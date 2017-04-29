@@ -4,10 +4,5 @@ steps:
 
   - wait
 
-  - label: "install node modules"
-    command: "npm install -g grunt-cli && npm install"
-
-  - wait
-
   - label: "build"
-    command: "grunt"
+    command: "docker run -v /var/lib/buildkite-agent/builds/$BUILDKITE_AGENT_NAME/mockserver:/build -w /build/mockserver-grunt -a stdout -a stderr jamesdbloom/mockserver:build /build/mockserver-grunt/scripts/local_quick_build.sh"
