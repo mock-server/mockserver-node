@@ -17,7 +17,13 @@ module.exports = (function () {
     var http = require('http');
 
     function defer() {
-        return (global.protractor ? protractor.promise : Q).defer();
+        var promise = (global.protractor ? protractor.promise : Q);
+        var deferred = promise.defer();
+
+        if (global.protractor) {
+            deferred.resolve = deferred.fulfill;
+        }
+        return deferred;
     }
 
     function checkStarted(request, retries, promise, verbose) {
