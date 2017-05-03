@@ -202,6 +202,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
  * 2017-04-27   v1.0.36  Updated MockServer to 3.10.6
  * 2017-04-29   v1.0.37  Updated build badge and flexible artifactory
  * 2017-04-30   v1.0.38  Added support for generic system properties
+ * 2017-05-03   v1.0.39  Improving promise logic for protractor
 
 ---
 
