@@ -18,31 +18,50 @@ module.exports = function (grunt) {
             all: [
                 'Gruntfile.js',
                 'tasks/*.js',
-                '<%= nodeunit.started %>',
-                '<%= nodeunit.stopped %>'
+                '<%= nodeunit.grunt_started %>',
+                '<%= nodeunit.grunt_stopped %>',
+                '<%= nodeunit.grunt_failure %>'
             ],
             options: {
                 jshintrc: '.jshintrc'
             }
         },
         start_mockserver: {
-            options: {
-                serverPort: 1080,
-                proxyPort: 1090
-            }
+            self: {
+                options: {
+                    serverPort: 1080,
+                    proxyPort: 1090
+                }
+            },
+            missing_ports: {}
         },
         stop_mockserver: {
-            options: {
-                serverPort: 1080,
-                proxyPort: 1090
-            }
+            self: {
+                options: {
+                    serverPort: 1080,
+                    proxyPort: 1090
+                }
+            },
+            missing_ports: {}
         },
         nodeunit: {
-            started: [
-                'test/started/*_test.js'
+            grunt_started: [
+                'test/grunt/started/*_test.js'
             ],
-            stopped: [
-                'test/stopped/*_test.js'
+            grunt_stopped: [
+                'test/grunt/stopped/*_test.js'
+            ],
+            grunt_failure: [
+                'test/grunt/failure/*_test.js'
+            ],
+            node_started: [
+                'test/node/started/*_test.js'
+            ],
+            node_stopped: [
+                'test/node/stopped/*_test.js'
+            ],
+            node_failure: [
+                'test/node/failure/*_test.js'
             ],
             options: {
                 reporter: 'nested'
@@ -79,7 +98,15 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-nodeunit');
 
-    grunt.registerTask('test', ['start_mockserver', 'nodeunit:started', 'stop_mockserver', 'nodeunit:stopped']);
+    grunt.registerTask('test', [
+        'start_mockserver:self',
+        'nodeunit:grunt_started',
+        'stop_mockserver:self',
+        'nodeunit:grunt_stopped',
+        'nodeunit:grunt_failure',
+        'nodeunit:node_failure',
+        'nodeunit:node_started'
+    ]);
 
     grunt.registerTask('default', ['exec:stop_existing_mockservers', 'deleted_jars', 'download_jar', 'jshint', 'test']);
 };

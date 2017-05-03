@@ -51,6 +51,7 @@
     exports.mock_server_started = {
         'mock server should have started': testCase({
             'should allows expectation to be setup': function (test) {
+                test.expect(2);
                 sendRequest("PUT", "localhost", 1080, "/expectation", {
                     'httpRequest': {
                         'path': '/somePath'

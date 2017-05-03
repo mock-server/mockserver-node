@@ -51,13 +51,14 @@
     exports.mock_server_stopped = {
         'mock server has stopped': testCase({
             'should fail when attempting to setup expectation': function (test) {
+                test.expect(1);
                 sendRequest("PUT", "localhost", 1080, "/expectation", {
                     'httpRequest': {
                         'path': '/somePath'
                     },
                     'httpResponse': {
                         'statusCode': 201,
-                        'body': JSON.stringify({ name: 'first_body' })
+                        'body': JSON.stringify({name: 'first_body'})
                     }
                 }).then(function () {
                     test.ok(false, "allowed expectation to be setup");
