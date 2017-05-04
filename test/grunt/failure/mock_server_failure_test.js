@@ -6,7 +6,7 @@
     var path = require('path');
     var exec = require('child_process').exec;
     var execOptions = {
-        cwd: path.join(__dirname, '../..')
+        cwd: path.join(__dirname)
     };
 
     exports.mock_server_failure = {

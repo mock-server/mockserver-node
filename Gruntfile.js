@@ -27,22 +27,16 @@ module.exports = function (grunt) {
             }
         },
         start_mockserver: {
-            self: {
-                options: {
-                    serverPort: 1080,
-                    proxyPort: 1090
-                }
-            },
-            missing_ports: {}
+            options: {
+                serverPort: 1080,
+                proxyPort: 1090
+            }
         },
         stop_mockserver: {
-            self: {
-                options: {
-                    serverPort: 1080,
-                    proxyPort: 1090
-                }
-            },
-            missing_ports: {}
+            options: {
+                serverPort: 1080,
+                proxyPort: 1090
+            }
         },
         nodeunit: {
             grunt_started: [
