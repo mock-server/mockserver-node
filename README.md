@@ -209,6 +209,7 @@ Date       | Version | Description
 2017-05-04 | v1.0.41 | Validation of configuration and improved errors
 2017-07-12 | v1.1.0  | Renamed to mockserver-node
 2017-07-12 | v1.1.1  | Fixing peer dependencies
+2017-07-12 | v1.1.2  | Adding shutdown hook for Node to JVM
 
 ---
 
