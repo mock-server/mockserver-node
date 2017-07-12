@@ -1,10 +1,10 @@
-# mockserver-grunt 
+# mockserver-node 
 
 > Node module and grunt plugin to start and stop [MockServer](http://mock-server.com/) and [MockServer](http://mock-server.com/) proxy
 
-[![Build status](https://badge.buildkite.com/84d4f1ca00ee6639c1825ea31f0dcd50bd73088571813a219b.svg?style=square&theme=slack)](https://buildkite.com/mockserver/mockserver-grunt) [![Dependency Status](https://david-dm.org/jamesdbloom/mockserver-grunt.png)](https://david-dm.org/jamesdbloom/mockserver-grunt) [![devDependency Status](https://david-dm.org/jamesdbloom/mockserver-grunt/dev-status.png)](https://david-dm.org/jamesdbloom/mockserver-grunt#info=devDependencies) [![Code Climate](https://codeclimate.com/github/jamesdbloom/mockserver-grunt.png)](https://codeclimate.com/github/jamesdbloom/mockserver-grunt)
+[![Build status](https://badge.buildkite.com/84d4f1ca00ee6639c1825ea31f0dcd50bd73088571813a219b.svg?style=square&theme=slack)](https://buildkite.com/mockserver/mockserver-node) [![Dependency Status](https://david-dm.org/jamesdbloom/mockserver-node.png)](https://david-dm.org/jamesdbloom/mockserver-node) [![devDependency Status](https://david-dm.org/jamesdbloom/mockserver-node/dev-status.png)](https://david-dm.org/jamesdbloom/mockserver-node#info=devDependencies) [![Code Climate](https://codeclimate.com/github/jamesdbloom/mockserver-node.png)](https://codeclimate.com/github/jamesdbloom/mockserver-node)
 
-[![NPM](https://nodei.co/npm/mockserver-grunt.png?downloads=true&stars=true)](https://nodei.co/npm/mockserver-grunt/) 
+[![NPM](https://nodei.co/npm/mockserver-node.png?downloads=true&stars=true)](https://nodei.co/npm/mockserver-node/) 
 
 
 For chat room: [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/jamesdbloom/mockserver?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
@@ -16,15 +16,15 @@ This node module can be used to start and stop [MockServer](http://mock-server.c
 You may install this plugin / node module with the following command:
 
 ```shell
-npm install mockserver-grunt --save-dev
+npm install mockserver-node --save-dev
 ```
 
 ## Node Module
 
-To start or stop the MockServer from any Node.js code you need to import this module using `require('mockserver-grunt')` as follows:
+To start or stop the MockServer from any Node.js code you need to import this module using `require('mockserver-node')` as follows:
 
 ```js
-var mockserver = require('mockserver-grunt');
+var mockserver = require('mockserver-node');
 ```
 
 Then you can use either the `start_mockserver` or `stop_mockserver` functions as follows:
@@ -80,7 +80,7 @@ grunt.initConfig({
     }
 });
 
-grunt.loadNpmTasks('mockserver-grunt');
+grunt.loadNpmTasks('mockserver-node');
 ```
 
 ### Options
@@ -204,6 +204,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
  * 2017-04-30   v1.0.38  Added support for generic system properties
  * 2017-05-03   v1.0.39  Improving promise logic for protractor
  * 2017-05-04   v1.0.41  Validation of configuration and improved errors
+ * 2017-07-12   v1.1.0   Renamed to mockserver-node
 
 ---
 
