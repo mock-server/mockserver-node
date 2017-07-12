@@ -155,56 +155,59 @@ start_mockserver: {
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
- * 2014-28-10   v0.0.1   Released mockserver-grunt task
- * 2014-28-10   v0.0.2   Minor tweaks
- * 2014-28-10   v0.0.3   Yet more minor tweaks with build
- * 2014-29-10   v0.0.4   Separated out of main MockServer build
- * 2014-29-10   v0.0.5   Fully integration new drone.io build
- * 2014-29-10   v0.0.6   Fixing issue with attached jar
- * 2014-29-10   v0.0.7   Fixing issue missing tasks folder
- * 2014-29-10   v0.0.8   Added support for use as plain node module
- * 2014-29-10   v0.0.9   Added missing critical file to module
- * 2014-30-10   v1.0.0   Fixed final issues with file naming
- * 2014-30-10   v1.0.1   Improved the documentation
- * 2014-30-10   v1.0.2   Improved the documentation
- * 2014-01-11   v1.0.3   Replaced sleep with detection MockServer status
- * 2014-02-11   v1.0.4   Upgraded MockServer version and build process
- * 2014-03-11   v1.0.5   Fixed important typo in read me
- * 2014-03-11   v1.0.6   Fixed missing dependency
- * 2014-05-11   v1.0.7   Fixed issue #1 with bower & the jar file
- * 2014-20-11   v1.0.8   Upgrading MockServer & glob versions
- * 2014-20-11   v1.0.9   Upgrading MockServer to 3.8.1
- * 2014-23-11   v1.0.10  Upgrading MockServer to 3.8.2
- * 2014-03-12   v1.0.11  Add additional options and improved promise handling
- * 2014-03-12   v1.0.12  Improved documentation
- * 2014-04-12   v1.0.13  Removed dependency on request module
- * 2014-05-12   v1.0.14  Upgrading MockServer to 3.9.1
- * 2015-04-06   v1.0.15  Upgrading MockServer to 3.9.3
- * 2015-04-09   v1.0.16  Upgrading MockServer to 3.9.6
- * 2015-04-09   v1.0.17  Re-publishing as previous failed
- * 2015-04-10   v1.0.18  Upgrading MockServer to improve logging
- * 2015-04-10   v1.0.19  Improved jar download & logging switches
- * 2015-04-14   v1.0.20  Upgraded MockServer to improve SOCKS proxy
- * 2015-04-14   v1.0.21  Re-publishing as previous failed
- * 2015-05-01   v1.0.23  Upgrading MockServer version and improving stop script
- * 2015-05-05   v1.0.24  Trying to fix missing file caused by `npm publish` failing
- * 2015-06-02   v1.0.25  Upgrading MockServer to 3.9.15
- * 2015-06-20   v1.0.26  Upgrading MockServer to 3.9.16
- * 2015-06-30   v1.0.27  Upgrading MockServer to 3.9.17
- * 2015-09-27   v1.0.28  Upgrading MockServer to 3.10.0
- * 2015-09-27   v1.0.29  Improved the way MockServer is stopped
- * 2015-10-05   v1.0.30  Upgrading MockServer to 3.10.1
- * 2016-09-27   v1.0.31  Updated dependencies
- * 2016-09-27   v1.0.32  Fixed bug #8
- * 2016-10-09   v1.0.33  Resolved issues with dependencies
- * 2017-04-26   v1.0.34  Updated MockServer to 3.10.5
- * 2017-04-26   v1.0.35  Removing jar from module
- * 2017-04-27   v1.0.36  Updated MockServer to 3.10.6
- * 2017-04-29   v1.0.37  Updated build badge and flexible artifactory
- * 2017-04-30   v1.0.38  Added support for generic system properties
- * 2017-05-03   v1.0.39  Improving promise logic for protractor
- * 2017-05-04   v1.0.41  Validation of configuration and improved errors
- * 2017-07-12   v1.1.0   Renamed to mockserver-node
+
+Date       | Version | Description
+:--------- |:------- |:----------------------------------------------------
+2014-28-10 | v0.0.1  | Released mockserver-grunt task
+2014-28-10 | v0.0.2  | Minor tweaks
+2014-28-10 | v0.0.3  | Yet more minor tweaks with build
+2014-29-10 | v0.0.4  | Separated out of main MockServer build
+2014-29-10 | v0.0.5  | Fully integration new drone.io build
+2014-29-10 | v0.0.6  | Fixing issue with attached jar
+2014-29-10 | v0.0.7  | Fixing issue missing tasks folder
+2014-29-10 | v0.0.8  | Added support for use as plain node module
+2014-29-10 | v0.0.9  | Added missing critical file to module
+2014-30-10 | v1.0.0  | Fixed final issues with file naming
+2014-30-10 | v1.0.1  | Improved the documentation
+2014-30-10 | v1.0.2  | Improved the documentation
+2014-01-11 | v1.0.3  | Replaced sleep with detection MockServer status
+2014-02-11 | v1.0.4  | Upgraded MockServer version and build process
+2014-03-11 | v1.0.5  | Fixed important typo in read me
+2014-03-11 | v1.0.6  | Fixed missing dependency
+2014-05-11 | v1.0.7  | Fixed issue #1 with bower & the jar file
+2014-20-11 | v1.0.8  | Upgrading MockServer & glob versions
+2014-20-11 | v1.0.9  | Upgrading MockServer to 3.8.1
+2014-23-11 | v1.0.10 | Upgrading MockServer to 3.8.2
+2014-03-12 | v1.0.11 | Add additional options and improved promise handling
+2014-03-12 | v1.0.12 | Improved documentation
+2014-04-12 | v1.0.13 | Removed dependency on request module
+2014-05-12 | v1.0.14 | Upgrading MockServer to 3.9.1
+2015-04-06 | v1.0.15 | Upgrading MockServer to 3.9.3
+2015-04-09 | v1.0.16 | Upgrading MockServer to 3.9.6
+2015-04-09 | v1.0.17 | Re-publishing as previous failed
+2015-04-10 | v1.0.18 | Upgrading MockServer to improve logging
+2015-04-10 | v1.0.19 | Improved jar download & logging switches
+2015-04-14 | v1.0.20 | Upgraded MockServer to improve SOCKS proxy
+2015-04-14 | v1.0.21 | Re-publishing as previous failed
+2015-05-01 | v1.0.23 | Upgrading MockServer version and improving stop script
+2015-05-05 | v1.0.24 | Trying to fix missing file caused by `npm publish` failing
+2015-06-02 | v1.0.25 | Upgrading MockServer to 3.9.15
+2015-06-20 | v1.0.26 | Upgrading MockServer to 3.9.16
+2015-06-30 | v1.0.27 | Upgrading MockServer to 3.9.17
+2015-09-27 | v1.0.28 | Upgrading MockServer to 3.10.0
+2015-09-27 | v1.0.29 | Improved the way MockServer is stopped
+2015-10-05 | v1.0.30 | Upgrading MockServer to 3.10.1
+2016-09-27 | v1.0.31 | Updated dependencies
+2016-09-27 | v1.0.32 | Fixed bug #8
+2016-10-09 | v1.0.33 | Resolved issues with dependencies
+2017-04-26 | v1.0.34 | Updated MockServer to 3.10.5
+2017-04-26 | v1.0.35 | Removing jar from module
+2017-04-27 | v1.0.36 | Updated MockServer to 3.10.6
+2017-04-29 | v1.0.37 | Updated build badge and flexible artifactory
+2017-04-30 | v1.0.38 | Added support for generic system properties
+2017-05-03 | v1.0.39 | Improving promise logic for protractor
+2017-05-04 | v1.0.41 | Validation of configuration and improved errors
+2017-07-12 | v1.1.0  | Renamed to mockserver-node
 
 ---
 
