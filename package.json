@@ -19,8 +19,11 @@
     "engines": {
         "node": ">= 0.8.0"
     },
+    "main": "launch_and_set_expectations.js",
+    "scripts": {
+        "test": "grunt"
+    },
     "files": [
-        "mockserver-netty-*-jar-with-dependencies.jar",
         "tasks",
         "index.js",
         "downloadJar.js",
