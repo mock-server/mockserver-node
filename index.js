@@ -121,6 +121,11 @@ module.exports = (function () {
         };
 
         var req = http.request(request, callback);
+
+        req.once('error', function (err) {
+            deferred.reject(err);
+        });
+
         req.end();
 
         return deferred.promise;
@@ -184,6 +189,23 @@ module.exports = (function () {
                 if (options.verbose) {
                     console.log('Running \'java ' + commandLineOptions.join(' ') + '\'');
                 }
+                if (!options.runForked) {
+                    function exitHandler(config, err) {
+                        return stop_mockserver(config.options).then(function () {
+                            if (config.exit) process.exit();
+                            if (err) console.log(err.stack);
+                        });
+                    }
+
+                    // stop mockserver when ctrl+c event fired
+                    process.on('SIGINT', exitHandler.bind(null, {exit: false, options: options}));
+
+                    // stop mockserver when kill used
+                    process.on('SIGTERM', exitHandler.bind(null, {exit: true, options: options}));
+
+                    // stop mockserver for uncaught exceptions
+                    process.on('uncaughtException', exitHandler.bind(null, {exit: false, options: options}));
+                }
                 mockServer = spawn('java', commandLineOptions, {
                     stdio: ['ignore', (options.verbose ? process.stdout : 'ignore'), process.stderr]
                 });
@@ -224,15 +246,25 @@ module.exports = (function () {
                 host: "localhost",
                 path: "/stop",
                 port: port
-            }).then(function () {
-                mockServer && mockServer.kill();
-                checkStopped({
-                    method: 'PUT',
-                    host: "localhost",
-                    path: "/reset",
-                    port: port
-                }, 100, deferred, options && options.verbose); // wait for 10 seconds
-            });
+            }).then(
+                function () {
+                    mockServer && mockServer.kill();
+                    checkStopped({
+                        method: 'PUT',
+                        host: "localhost",
+                        path: "/reset",
+                        port: port
+                    }, 100, deferred, options && options.verbose); // wait for 10 seconds
+                },
+                function (err) {
+                    if (err && err.code === "ECONNREFUSED") {
+                        deferred.resolve();
+                    } else {
+                        deferred.reject(err);
+                    }
+                }
+            );
+
         } else {
             deferred.reject("Please specify \"serverPort\" or \"proxyPort\" or both, for example: \"stop_mockserver({ serverPort: 1080, proxyPort: 1090 })\"");
         }
