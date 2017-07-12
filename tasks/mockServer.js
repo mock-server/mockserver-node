@@ -20,7 +20,7 @@ module.exports = function (grunt) {
             done(true);
         }, function() {
             console.error('\n' +
-                'mockserver-grunt - you must specify at least serverPort or proxyPort, for example:\n' +
+                'mockserver-node - you must specify at least serverPort or proxyPort, for example:\n' +
                 'start_mockserver: {\n' +
                 '    options: {\n' +
                 '        serverPort: 1080,\n' +
@@ -39,7 +39,7 @@ module.exports = function (grunt) {
             done(true);
         }, function() {
             console.error('\n' +
-                'mockserver-grunt - you must specify at least serverPort or proxyPort, for example:\n' +
+                'mockserver-node - you must specify at least serverPort or proxyPort, for example:\n' +
                 'stop_mockserver: {\n' +
                 '    options: {\n' +
                 '        serverPort: 1080,\n' +

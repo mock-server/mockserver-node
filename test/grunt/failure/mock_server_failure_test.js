@@ -13,11 +13,11 @@
         'mock server fails to start': testCase({
             'should fail start if configuration missing': function (test) {
                 test.expect(1);
-                exec('grunt start_mockserver:missing_ports', execOptions, function (error, stdout, stderr) {
+                exec('../../../node_modules/.bin/grunt start_mockserver:missing_ports', execOptions, function (error, stdout, stderr) {
                     test.equal(
                         stderr,
                         '\n' +
-                        'mockserver-grunt - you must specify at least serverPort or proxyPort, for example:\n' +
+                        'mockserver-node - you must specify at least serverPort or proxyPort, for example:\n' +
                         'start_mockserver: {\n' +
                         '    options: {\n' +
                         '        serverPort: 1080,\n' +
@@ -30,11 +30,11 @@
             },
             'should fail stop if configuration missing': function (test) {
                 test.expect(1);
-                exec('grunt stop_mockserver:missing_ports', execOptions, function (error, stdout, stderr) {
+                exec('../../../node_modules/.bin/grunt stop_mockserver:missing_ports', execOptions, function (error, stdout, stderr) {
                     test.equal(
                         stderr,
                         '\n' +
-                        'mockserver-grunt - you must specify at least serverPort or proxyPort, for example:\n' +
+                        'mockserver-node - you must specify at least serverPort or proxyPort, for example:\n' +
                         'stop_mockserver: {\n' +
                         '    options: {\n' +
                         '        serverPort: 1080,\n' +

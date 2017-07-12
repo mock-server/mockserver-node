@@ -3,7 +3,7 @@
     'use strict';
 
     var testCase = require('nodeunit').testCase;
-    var mockserver = require('mockserver-grunt');
+    var mockserver = require(__dirname + '/../../..');
     var sendRequest = require(__dirname + '/../../sendRequest.js');
 
     exports.mock_server_stopped = {
