@@ -8,11 +8,28 @@ mockserver
         mockServerClient("localhost", 1080).mockAnyResponse(
             {
                 'httpRequest': {
-                    'path': '/somePath'
+                    'path': '/somePathOne'
                 },
                 'httpResponse': {
                     'statusCode': 200,
-                    'body': JSON.stringify({name: 'value'}),
+                    'body': JSON.stringify({name: 'one'}),
+                    'delay': {
+                        'timeUnit': 'MILLISECONDS',
+                        'value': 250
+                    }
+                }
+            }
+        );
+    })
+    .then(function () {
+        mockServerClient("localhost", 1080).mockAnyResponse(
+            {
+                'httpRequest': {
+                    'path': '/somePathTwo'
+                },
+                'httpResponse': {
+                    'statusCode': 200,
+                    'body': JSON.stringify({name: 'two'}),
                     'delay': {
                         'timeUnit': 'MILLISECONDS',
                         'value': 250
