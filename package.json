@@ -1,7 +1,7 @@
 {
     "name": "mockserver-node",
     "description": "Node.js module and Grunt plugin to start and stop MockServer",
-    "version": "2.0.0",
+    "version": "2.1.0",
     "homepage": "https://github.com/jamesdbloom/mockserver",
     "author": {
         "name": "James Bloom",
@@ -27,7 +27,8 @@
         "tasks",
         "index.js",
         "downloadJar.js",
-        "stop_MockServer.sh"
+        "stop_MockServer.sh",
+        "mockserver-netty-3.12-jar-with-dependencies.jar"
     ],
     "devDependencies": {
         "grunt": ">=0.4",

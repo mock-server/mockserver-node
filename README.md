@@ -211,6 +211,7 @@ Date       | Version | Description
 2017-07-12 | v1.1.1  | Fixing peer dependencies
 2017-07-12 | v1.1.2  | Adding shutdown hook for Node to JVM
 2017-09-21 | v2.0.0  | Upgrading MockServer to 3.11
+2017-10-16 | v2.1.0  | Upgrading MockServer to 3.12
 
 ---
 
