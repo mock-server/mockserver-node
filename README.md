@@ -2,7 +2,7 @@
 
 > Node module and grunt plugin to start and stop [MockServer](http://mock-server.com/) and [MockServer](http://mock-server.com/) proxy
 
-[![Build status](https://badge.buildkite.com/84d4f1ca00ee6639c1825ea31f0dcd50bd73088571813a219b.svg?style=square&theme=slack)](https://buildkite.com/mockserver/mockserver-node) [![Dependency Status](https://david-dm.org/jamesdbloom/mockserver-node.png)](https://david-dm.org/jamesdbloom/mockserver-node) [![devDependency Status](https://david-dm.org/jamesdbloom/mockserver-node/dev-status.png)](https://david-dm.org/jamesdbloom/mockserver-node#info=devDependencies) [![Code Climate](https://codeclimate.com/github/jamesdbloom/mockserver-node.png)](https://codeclimate.com/github/jamesdbloom/mockserver-node)
+[![Build status](https://badge.buildkite.com/84d4f1ca00ee6639c1825ea31f0dcd50bd73088571813a219b.svg?style=square&theme=slack)](https://buildkite.com/mockserver/mockserver-node) [![Dependency Status](https://david-dm.org/jamesdbloom/mockserver-node.png)](https://david-dm.org/jamesdbloom/mockserver-node) [![devDependency Status](https://david-dm.org/jamesdbloom/mockserver-node/dev-status.png)](https://david-dm.org/jamesdbloom/mockserver-node#info=devDependencies) [![Code Climate](http://codeclimate.com/github/jamesdbloom/mockserver-node.png)](https://codeclimate.com/github/jamesdbloom/mockserver-node)
 
 [![NPM](https://nodei.co/npm/mockserver-node.png?downloads=true&stars=true)](https://nodei.co/npm/mockserver-node/) 
 
