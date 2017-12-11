@@ -9,7 +9,7 @@ mockserver
             mockServerClient("localhost", 1080).mockAnyResponse(
                 {
                     'httpRequest': {
-                        'paths': '/somePathOne'
+                        'path': '/somePathOne'
                     },
                     'httpResponse': {
                         'statusCode': 200,
@@ -23,7 +23,7 @@ mockserver
             ).then(
                 function () {
                     console.log("created \"/somePathOne\" expectation");
-                }, 
+                },
                 function (error) {
                     console.log(error.body);
                 }
@@ -46,7 +46,7 @@ mockserver
             ).then(
                 function () {
                     console.log("created \"/somePathTwo\" expectation");
-                }, 
+                },
                 function (error) {
                     console.log(error.body);
                 }
