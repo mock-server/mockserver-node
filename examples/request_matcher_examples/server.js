@@ -253,7 +253,6 @@ function matchRequestByHeaderRegexNameAndValue() {
         },
         "httpResponse": {
             "body": "some_response_body"
->>>>>>> adding multiple code examples
         }
     }).then(
         function () {
