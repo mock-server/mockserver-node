@@ -109,6 +109,12 @@ Default value: `/content/repositories/releases/org/mock-server/mockserver-netty/
 
 This value specifies the path to the artifactory leading to the mockserver-netty jar with dependencies.
 
+#### options.mockServerVersion
+Type: `String` 
+Default value: `5.4.1`
+
+This value specifies the artifact version of MockServer to download.
+
 #### options.verbose
 Type: `Boolean`
 Default value: `false`
