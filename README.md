@@ -31,16 +31,14 @@ Then you can use either the `start_mockserver` or `stop_mockserver` functions as
 
 ```js
 mockserver.start_mockserver({
-                serverPort: 1080,
-                proxyPort: 1090,
+                serverPort: 1080
                 verbose: true
             });
 
 // do something
 
 mockserver.stop_mockserver({
-                serverPort: 1080,
-                proxyPort: 1090,
+                serverPort: 1080
                 verbose: true
             });
 ```
@@ -68,14 +66,12 @@ The following example will result in a both a MockServer and a MockServer Proxy 
 grunt.initConfig({
     start_mockserver: {
         options: {
-            serverPort: 1080,
-            proxyPort: 1090
+            serverPort: 1080
         }
     },
     stop_mockserver: {
         options: {
-            serverPort: 1080,
-            proxyPort: 1090
+            serverPort: 1080
         }
     }
 });
@@ -89,13 +85,19 @@ grunt.loadNpmTasks('mockserver-node');
 Type: `Integer`
 Default value: `undefined`
 
-This value specifies the HTTP and HTTPS port for the MockServer port unification is used to support HTTP and HTTPS on the same port.  The MockServer will only be started if a port is provided, if this value is left `undefined` the MockServer will not be started.
+The HTTP, HTTPS, SOCKS and HTTP CONNECT port(s) for both mocking and proxying requests.  Port unification is used to support all protocols for proxying and mocking on the same port(s). Supports comma separated list for binding to multiple ports.
 
-#### options.proxyPort
+#### options.proxyRemotePort
 Type: `Integer`
-Default value: `undefined`
+Default value: `undefined` 
 
-This value specifies the HTTP, HTTPS, SOCKS and HTTP CONNECT port for proxy, port unification is used to support all protocols on the same port.  The proxy will only be started if a port is provided, if this value is left `undefined` the proxy will not be started.
+Optionally enables port forwarding mode. When specified all requests received will be forwarded to the specified port, unless they match an expectation.
+
+#### options.proxyRemoteHost
+Type: `String`
+Default value: `undefined`  
+
+Specified the host to forward all proxy requests to when port forwarding mode has been enabled using the `proxyRemotePort` option.  This setting is ignored unless `proxyRemotePort` has been specified. If no value is provided for `proxyRemoteHost` when `proxyRemotePort` has been specified, `proxyRemoteHost` will default to `"localhost"`.
 
 #### options.artifactoryHost
 Type: `String` 
@@ -135,7 +137,7 @@ This value indicates whether Java debugging should be enabled and if so which po
 
 Note that `suspend=y` is used so the MockServer will pause until the debugger is attached.  The grunt task will wait 50 seconds for the debugger to be attached before it exits with a failure status.
   
-#### options.systemProperties
+#### options.jvmOptions
 Type: `String`
 Default value: `undefined`
 
@@ -145,8 +147,7 @@ This value allows any system properties to be passed to the JVM that runs MockSe
 start_mockserver: {
     options: {
         serverPort: 1080,
-        proxyPort: 1090,
-        systemProperties: "-Dmockserver.enableCORSForAllResponses=true"
+        jvmOptions: "-Dmockserver.enableCORSForAllResponses=true"
     }
 }
 ```  
@@ -219,6 +220,7 @@ Date       | Version | Description
 2017-12-12 | v5.2.2  | Upgrading MockServer to 5.2.2
 2017-12-18 | v5.2.3  | Upgrading MockServer to 5.2.3
 2017-12-25 | v5.3.0  | Upgrading MockServer to 5.3.0
+2018-11-04 | v5.4.1  | Upgrading MockServer to 5.4.1
 
 ---
 
