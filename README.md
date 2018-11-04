@@ -31,15 +31,15 @@ Then you can use either the `start_mockserver` or `stop_mockserver` functions as
 
 ```js
 mockserver.start_mockserver({
-                serverPort: 1080
-                verbose: true
+                serverPort: 1080,
+                trace: true
             });
 
 // do something
 
 mockserver.stop_mockserver({
-                serverPort: 1080
-                verbose: true
+                serverPort: 1080,
+                trace: true
             });
 ```
 
@@ -78,6 +78,10 @@ grunt.initConfig({
 
 grunt.loadNpmTasks('mockserver-node');
 ```
+
+## Request Log
+
+**Note:** The request log will only be captured in MockServer if the log level is `INFO` (or more verbose, i.e. `DEBUG` or `TRACE`) therefore to capture the request log and use the `/retrieve` endpoint ensure either the option `trace: true` or the command line switch `--verbose` is set.
 
 ### Options
 

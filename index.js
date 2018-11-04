@@ -181,6 +181,10 @@ module.exports = (function () {
                     commandLineOptions.push("-proxyRemoteHost");
                     commandLineOptions.push(options.proxyRemoteHost);
                 }
+                if (options.logLevel) {
+                    commandLineOptions.push("-logLevel");
+                    commandLineOptions.push(options.logLevel);
+                }
                 if (options.verbose) {
                     console.log('Running \'java ' + commandLineOptions.join(' ') + '\'');
                 }
