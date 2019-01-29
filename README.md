@@ -147,6 +147,13 @@ start_mockserver: {
 }
 ```  
 
+#### options.startupRetries
+Type: `Integer`
+Default value if javaDebugPort is not set: `110`
+Default value if javaDebugPort is set: `500`
+
+This value indicates the how many times we will call the check to confirm if the mock server started up correctly. It will default to 110 which will take about 11 seconds to complete, this is normally long enough for the server to startup. The server can take longer to start up if Java debugging is enabled so this will default to 500. The default will, in some cases, need to be overridden as the JVM may take longer to start up on some architectures,  e.g. Mac seems to take a little longer.
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 

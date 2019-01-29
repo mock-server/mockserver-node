@@ -144,7 +144,7 @@ module.exports = (function () {
                 artifactoryPath = options.artifactoryPath;
             }
 
-            var startupRetries = 100; // wait for 10 seconds
+            var startupRetries = options.startupRetries || options.javaDebugPort ? 500 : 110;
 
             // double check the jar has already been downloaded
             require('./downloadJar').downloadJar('5.5.1', artifactoryHost, artifactoryPath).then(function () {
@@ -161,7 +161,6 @@ module.exports = (function () {
                 }
                 if (options.javaDebugPort) {
                     commandLineOptions.push('-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=' + options.javaDebugPort);
-                    startupRetries = 500;
                 }
                 if (options.jvmOptions) {
                     commandLineOptions.push(options.jvmOptions);
