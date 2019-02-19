@@ -11,6 +11,7 @@ module.exports = (function () {
     var mockServer;
     var artifactoryHost = 'oss.sonatype.org';
     var artifactoryPath = '/content/repositories/releases/org/mock-server/mockserver-netty/';
+    var mockServerVersion = '5.5.1';
 
     var Q = require('q');
     var http = require('http');
@@ -146,10 +147,14 @@ module.exports = (function () {
                 artifactoryPath = options.artifactoryPath;
             }
 
+            if (options.mockServerVersion) {
+                mockServerVersion = options.mockServerVersion;
+            }
+
             var startupRetries = options.startupRetries || options.javaDebugPort ? 500 : 110;
 
             // double check the jar has already been downloaded
-            require('./downloadJar').downloadJar('5.5.1', artifactoryHost, artifactoryPath).then(function () {
+            require('./downloadJar').downloadJar(mockServerVersion, artifactoryHost, artifactoryPath).then(function () {
 
                 var spawn = require('child_process').spawn;
                 var glob = require('glob');
