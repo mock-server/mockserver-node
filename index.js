@@ -11,7 +11,7 @@ module.exports = (function () {
     var mockServer;
     var artifactoryHost = 'oss.sonatype.org';
     var artifactoryPath = '/content/repositories/releases/org/mock-server/mockserver-netty/';
-    var mockServerVersion = '5.4.1';
+    var mockServerVersion = '5.5.1';
 
     var Q = require('q');
     var http = require('http');
@@ -136,7 +136,7 @@ module.exports = (function () {
         var port;
         var deferred = defer();
 
-        if (options && (options.serverPort || options.proxyPort)) {
+        if (options && options.serverPort) {
             if (options.artifactoryHost) {
                 artifactoryHost = options.artifactoryHost;
             }
@@ -149,7 +149,7 @@ module.exports = (function () {
                 mockServerVersion = options.mockServerVersion;
             }
 
-            var startupRetries = 100; // wait for 10 seconds
+            var startupRetries = options.startupRetries || options.javaDebugPort ? 500 : 110;
 
             // double check the jar has already been downloaded
             require('./downloadJar').downloadJar(mockServerVersion, artifactoryHost, artifactoryPath).then(function () {
@@ -166,10 +166,9 @@ module.exports = (function () {
                 }
                 if (options.javaDebugPort) {
                     commandLineOptions.push('-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=' + options.javaDebugPort);
-                    startupRetries = 500;
                 }
-                if (options.systemProperties) {
-                    commandLineOptions.push(options.systemProperties);
+                if (options.jvmOptions) {
+                    commandLineOptions.push(options.jvmOptions);
                 }
                 commandLineOptions.push('-jar');
                 commandLineOptions.push(glob.sync('**/mockserver-netty-*-jar-with-dependencies.jar'));
@@ -178,11 +177,6 @@ module.exports = (function () {
                     commandLineOptions.push(options.serverPort);
                     port = port || options.serverPort;
                 }
-                if (options.proxyPort) {
-                    commandLineOptions.push("-proxyPort");
-                    commandLineOptions.push(options.proxyPort);
-                    port = port || options.proxyPort;
-                }
                 if (options.proxyRemotePort) {
                     commandLineOptions.push("-proxyRemotePort");
                     commandLineOptions.push(options.proxyRemotePort);
@@ -190,6 +184,10 @@ module.exports = (function () {
                 if (options.proxyRemoteHost) {
                     commandLineOptions.push("-proxyRemoteHost");
                     commandLineOptions.push(options.proxyRemoteHost);
+                }
+                if (options.logLevel) {
+                    commandLineOptions.push("-logLevel");
+                    commandLineOptions.push(options.logLevel);
                 }
                 if (options.verbose) {
                     console.log('Running \'java ' + commandLineOptions.join(' ') + '\'');
@@ -226,7 +224,7 @@ module.exports = (function () {
                 deferred.reject(error);
             });
         } else {
-            deferred.reject("Please specify \"serverPort\" or \"proxyPort\" or both, for example: \"start_mockserver({ serverPort: 1080, proxyPort: 1090 })\"");
+            deferred.reject("Please specify \"serverPort\", for example: \"start_mockserver({ serverPort: 1080 })\"");
         }
 
         return deferred.promise;
@@ -236,12 +234,9 @@ module.exports = (function () {
         var port;
         var deferred = defer();
 
-        if (options && (options.serverPort || options.proxyPort)) {
+        if (options && options.serverPort) {
             if (options.serverPort) {
                 port = port || options.serverPort;
-            }
-            if (options.proxyPort) {
-                port = port || options.proxyPort;
             }
             if (options.verbose) {
                 console.log('Using port \'' + port + '\' to stop MockServer and MockServer Proxy');
@@ -271,7 +266,7 @@ module.exports = (function () {
             );
 
         } else {
-            deferred.reject("Please specify \"serverPort\" or \"proxyPort\" or both, for example: \"stop_mockserver({ serverPort: 1080, proxyPort: 1090 })\"");
+            deferred.reject("Please specify \"serverPort\", for example: \"stop_mockserver({ serverPort: 1080 })\"");
         }
         return deferred.promise;
     }

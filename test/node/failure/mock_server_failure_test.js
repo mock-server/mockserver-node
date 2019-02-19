@@ -18,7 +18,7 @@
                             test.done();
                         },
                         function (error) {
-                            test.equal(error, 'Please specify "serverPort" or "proxyPort" or both, for example: "start_mockserver({ serverPort: 1080, proxyPort: 1090 })"');
+                            test.equal(error, 'Please specify "serverPort", for example: "start_mockserver({ serverPort: 1080 })"');
                             test.done();
                         }
                     )
@@ -34,7 +34,7 @@
                             test.done();
                         },
                         function (error) {
-                            test.equal(error, 'Please specify "serverPort" or "proxyPort" or both, for example: "start_mockserver({ serverPort: 1080, proxyPort: 1090 })"');
+                            test.equal(error, 'Please specify "serverPort", for example: "start_mockserver({ serverPort: 1080 })"');
                             test.done();
                         }
                     )
@@ -50,7 +50,7 @@
                             test.done();
                         },
                         function (error) {
-                            test.equal(error, 'Please specify "serverPort" or "proxyPort" or both, for example: "stop_mockserver({ serverPort: 1080, proxyPort: 1090 })"');
+                            test.equal(error, 'Please specify "serverPort", for example: "stop_mockserver({ serverPort: 1080 })"');
                             test.done();
                         }
                     )
@@ -66,7 +66,7 @@
                             test.done();
                         },
                         function (error) {
-                            test.equal(error, 'Please specify "serverPort" or "proxyPort" or both, for example: "stop_mockserver({ serverPort: 1080, proxyPort: 1090 })"');
+                            test.equal(error, 'Please specify "serverPort", for example: "stop_mockserver({ serverPort: 1080 })"');
                             test.done();
                         }
                     )

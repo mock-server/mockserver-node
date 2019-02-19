@@ -32,29 +32,17 @@ Then you can use either the `start_mockserver` or `stop_mockserver` functions as
 ```js
 mockserver.start_mockserver({
                 serverPort: 1080,
-                proxyPort: 1090,
-                verbose: true
+                trace: true
             });
 
 // do something
 
 mockserver.stop_mockserver({
-                serverPort: 1080,
-                proxyPort: 1090,
-                verbose: true
+                serverPort: 1080
             });
 ```
 
-If you are only using the MockServer then only specify the MockServer port as follows:
-
-```js
-mockserver.start_mockserver({serverPort: 1080});
-
-// do something
-
-mockserver.stop_mockserver({serverPort: 1080});
-```
-The MockServer and the MockServer Proxy use port unification to support HTTP and HTTPS on the same port.  A client can then connect to the single port with both HTTP and HTTPS as the socket will automatically detected SSL traffic and decrypt it when required.
+The MockServer uses port unification to support HTTP, HTTPS, SOCKS, HTTP CONNECT, Port Forwarding Proxying on the same port. A client can then connect to the single port with both HTTP and HTTPS as the socket will automatically detected SSL traffic and decrypt it when required.
 
 ## Grunt Plugin
 
@@ -69,13 +57,12 @@ grunt.initConfig({
     start_mockserver: {
         options: {
             serverPort: 1080,
-            proxyPort: 1090
+            trace: true
         }
     },
     stop_mockserver: {
         options: {
-            serverPort: 1080,
-            proxyPort: 1090
+            serverPort: 1080
         }
     }
 });
@@ -83,19 +70,29 @@ grunt.initConfig({
 grunt.loadNpmTasks('mockserver-node');
 ```
 
+## Request Log
+
+**Note:** The request log will only be captured in MockServer if the log level is `INFO` (or more verbose, i.e. `DEBUG` or `TRACE`) therefore to capture the request log and use the `/retrieve` endpoint ensure either the option `trace: true` or the command line switch `--verbose` is set.
+
 ### Options
 
 #### options.serverPort
 Type: `Integer`
 Default value: `undefined`
 
-This value specifies the HTTP and HTTPS port for the MockServer port unification is used to support HTTP and HTTPS on the same port.  The MockServer will only be started if a port is provided, if this value is left `undefined` the MockServer will not be started.
+The HTTP, HTTPS, SOCKS and HTTP CONNECT port(s) for both mocking and proxying requests.  Port unification is used to support all protocols for proxying and mocking on the same port(s). Supports comma separated list for binding to multiple ports.
 
-#### options.proxyPort
+#### options.proxyRemotePort
 Type: `Integer`
-Default value: `undefined`
+Default value: `undefined` 
 
-This value specifies the HTTP, HTTPS, SOCKS and HTTP CONNECT port for proxy, port unification is used to support all protocols on the same port.  The proxy will only be started if a port is provided, if this value is left `undefined` the proxy will not be started.
+Optionally enables port forwarding mode. When specified all requests received will be forwarded to the specified port, unless they match an expectation.
+
+#### options.proxyRemoteHost
+Type: `String`
+Default value: `undefined`  
+
+Specified the host to forward all proxy requests to when port forwarding mode has been enabled using the `proxyRemotePort` option.  This setting is ignored unless `proxyRemotePort` has been specified. If no value is provided for `proxyRemoteHost` when `proxyRemotePort` has been specified, `proxyRemoteHost` will default to `"localhost"`.
 
 #### options.artifactoryHost
 Type: `String` 
@@ -141,7 +138,7 @@ This value indicates whether Java debugging should be enabled and if so which po
 
 Note that `suspend=y` is used so the MockServer will pause until the debugger is attached.  The grunt task will wait 50 seconds for the debugger to be attached before it exits with a failure status.
   
-#### options.systemProperties
+#### options.jvmOptions
 Type: `String`
 Default value: `undefined`
 
@@ -151,11 +148,17 @@ This value allows any system properties to be passed to the JVM that runs MockSe
 start_mockserver: {
     options: {
         serverPort: 1080,
-        proxyPort: 1090,
-        systemProperties: "-Dmockserver.enableCORSForAllResponses=true"
+        jvmOptions: "-Dmockserver.enableCORSForAllResponses=true"
     }
 }
 ```  
+
+#### options.startupRetries
+Type: `Integer`
+Default value if javaDebugPort is not set: `110`
+Default value if javaDebugPort is set: `500`
+
+This value indicates the how many times we will call the check to confirm if the mock server started up correctly. It will default to 110 which will take about 11 seconds to complete, this is normally long enough for the server to startup. The server can take longer to start up if Java debugging is enabled so this will default to 500. The default will, in some cases, need to be overridden as the JVM may take longer to start up on some architectures,  e.g. Mac seems to take a little longer.
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
@@ -225,6 +228,10 @@ Date       | Version | Description
 2017-12-12 | v5.2.2  | Upgrading MockServer to 5.2.2
 2017-12-18 | v5.2.3  | Upgrading MockServer to 5.2.3
 2017-12-25 | v5.3.0  | Upgrading MockServer to 5.3.0
+2018-11-04 | v5.4.1  | Upgrading MockServer to 5.4.1
+2018-11-16 | v5.5.0  | Upgrading MockServer to 5.5.0
+2018-12-29 | v5.5.1  | Upgrading MockServer to 5.5.1
+2018-12-29 | v5.5.2  | Fixed promise rejection issue
 
 ---
 

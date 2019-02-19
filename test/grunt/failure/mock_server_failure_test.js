@@ -17,11 +17,10 @@
                     test.equal(
                         stderr,
                         '\n' +
-                        'mockserver-node - you must specify at least serverPort or proxyPort, for example:\n' +
+                        'mockserver-node - you must at least specify serverPort, for example:\n' +
                         'start_mockserver: {\n' +
                         '    options: {\n' +
-                        '        serverPort: 1080,\n' +
-                        '        proxyPort: 1090\n' +
+                        '        serverPort: 1080\n' +
                         '    }\n' +
                         '}\n\n'
                     );
@@ -34,11 +33,10 @@
                     test.equal(
                         stderr,
                         '\n' +
-                        'mockserver-node - you must specify at least serverPort or proxyPort, for example:\n' +
+                        'mockserver-node - you must at least specify serverPort, for example:\n' +
                         'stop_mockserver: {\n' +
                         '    options: {\n' +
-                        '        serverPort: 1080,\n' +
-                        '        proxyPort: 1090\n' +
+                        '        serverPort: 1080\n' +
                         '    }\n' +
                         '}\n\n'
                     );

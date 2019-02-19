@@ -28,14 +28,12 @@ module.exports = function (grunt) {
         },
         start_mockserver: {
             options: {
-                serverPort: 1080,
-                proxyPort: 1090
+                serverPort: 1080
             }
         },
         stop_mockserver: {
             options: {
-                serverPort: 1080,
-                proxyPort: 1090
+                serverPort: 1080
             }
         },
         nodeunit: {
@@ -67,8 +65,7 @@ module.exports = function (grunt) {
         var done = this.async();
         var artifactoryHost = 'oss.sonatype.org';
         var artifactoryPath = '/content/repositories/releases/org/mock-server/mockserver-netty/';
-        var mockServerVersion = '5.4.1';
-        require('./downloadJar').downloadJar(mockServerVersion, artifactoryHost, artifactoryPath).then(function () {
+        require('./downloadJar').downloadJar('5.5.1', artifactoryHost, artifactoryPath).then(function () {
             done(true);
         }, function () {
             done(false);
