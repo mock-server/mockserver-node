@@ -16,7 +16,9 @@ module.exports = (function () {
     var http = require('http');
 
     function defer() {
-        var promise = (global.protractor ? protractor.promise : Q);
+        var promise = (global.protractor && protractor.promise.USE_PROMISE_MANAGER !== false) 
+            ? protractor.promise 
+            : Q;
         var deferred = promise.defer();
 
         if (deferred.fulfill && !deferred.resolve) {
