@@ -12,7 +12,7 @@
     function downloadJar(version, artifactoryHost, artifactoryPath) {
         var Q = require('q');
         var deferred = Q.defer();
-        var https = require('https');
+        var https = require('follow-redirects').https;
         var fs = require('fs');
         var glob = require('glob');
         var dest = 'mockserver-netty-' + version + '-jar-with-dependencies.jar';
