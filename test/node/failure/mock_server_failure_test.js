@@ -38,6 +38,25 @@
                             test.done();
                         }
                     );
+            },
+            'if deprecated option "systemProperties" is given': function (test) {
+
+                test.expect(1);
+                mockserver
+                    .start_mockserver({
+                        serverPort: 1080,
+                        systemProperties: '--foo'
+                    })
+                    .then(
+                        function () {
+                            test.ok(false, "should fail to start");
+                            test.done();
+                        },
+                        function (error) {
+                            test.equal(error, 'The option "systemProperties" was renamed to "jvmOptions" in 5.4.1. Please migrate to the new option name');
+                            test.done();
+                        }
+                    );
             }
         })
     };

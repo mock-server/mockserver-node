@@ -17,8 +17,8 @@ module.exports = (function () {
     var http = require('http');
 
     function defer() {
-        var promise = (global.protractor && protractor.promise.USE_PROMISE_MANAGER !== false) 
-            ? protractor.promise 
+        var promise = (global.protractor && protractor.promise.USE_PROMISE_MANAGER !== false)
+            ? protractor.promise
             : Q;
         var deferred = promise.defer();
 
@@ -138,96 +138,103 @@ module.exports = (function () {
         var port;
         var deferred = defer();
 
-        if (options && options.serverPort) {
-            if (options.artifactoryHost) {
-                artifactoryHost = options.artifactoryHost;
-            }
-
-            if (options.artifactoryPath) {
-                artifactoryPath = options.artifactoryPath;
-            }
-
-            if (options.mockServerVersion) {
-                mockServerVersion = options.mockServerVersion;
-            }
-
-            var startupRetries = options.startupRetries || options.javaDebugPort ? 500 : 110;
-
-            // double check the jar has already been downloaded
-            require('./downloadJar').downloadJar(mockServerVersion, artifactoryHost, artifactoryPath).then(function () {
-
-                var spawn = require('child_process').spawn;
-                var glob = require('glob');
-                var commandLineOptions = ['-Dfile.encoding=UTF-8'];
-                if (options.trace) {
-                    commandLineOptions.push('-Dmockserver.logLevel=TRACE');
-                } else if (options.verbose) {
-                    commandLineOptions.push('-Dmockserver.logLevel=INFO');
-                } else {
-                    commandLineOptions.push('-Dmockserver.logLevel=WARN');
-                }
-                if (options.javaDebugPort) {
-                    commandLineOptions.push('-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=' + options.javaDebugPort);
-                }
-                if (options.jvmOptions) {
-                    commandLineOptions.push(options.jvmOptions);
-                }
-                commandLineOptions.push('-jar');
-                commandLineOptions.push(glob.sync('**/mockserver-netty-*-jar-with-dependencies.jar'));
-                if (options.serverPort) {
-                    commandLineOptions.push("-serverPort");
-                    commandLineOptions.push(options.serverPort);
-                    port = port || options.serverPort;
-                }
-                if (options.proxyRemotePort) {
-                    commandLineOptions.push("-proxyRemotePort");
-                    commandLineOptions.push(options.proxyRemotePort);
-                }
-                if (options.proxyRemoteHost) {
-                    commandLineOptions.push("-proxyRemoteHost");
-                    commandLineOptions.push(options.proxyRemoteHost);
-                }
-                if (options.logLevel) {
-                    commandLineOptions.push("-logLevel");
-                    commandLineOptions.push(options.logLevel);
-                }
-                if (options.verbose) {
-                    console.log('Running \'java ' + commandLineOptions.join(' ') + '\'');
-                }
-                if (!options.runForked) {
-                    function exitHandler(config, err) {
-                        return stop_mockserver(config.options).then(function () {
-                            if (config.exit) process.exit();
-                            if (err) console.log(err.stack);
-                        });
-                    }
-
-                    // stop mockserver when ctrl+c event fired
-                    process.on('SIGINT', exitHandler.bind(null, {exit: false, options: options}));
-
-                    // stop mockserver when kill used
-                    process.on('SIGTERM', exitHandler.bind(null, {exit: true, options: options}));
-
-                    // stop mockserver for uncaught exceptions
-                    process.on('uncaughtException', exitHandler.bind(null, {exit: false, options: options}));
-                }
-                mockServer = spawn('java', commandLineOptions, {
-                    stdio: ['ignore', (options.verbose ? process.stdout : 'ignore'), process.stderr]
-                });
-
-            }).then(function () {
-                return checkStarted({
-                    method: 'PUT',
-                    host: "localhost",
-                    path: "/reset",
-                    port: port
-                }, startupRetries, deferred, options.verbose);
-            }, function (error) {
-                deferred.reject(error);
-            });
-        } else {
-            deferred.reject("Please specify \"serverPort\", for example: \"start_mockserver({ serverPort: 1080 })\"");
+        if (!(options && options.serverPort)) {
+            deferred.reject('Please specify "serverPort", for example: "start_mockserver({ serverPort: 1080 })"');
+            return deferred.promise;
         }
+
+        if ((options.systemProperties)) {
+            deferred.reject('The option "systemProperties" was renamed to "jvmOptions" in 5.4.1. Please migrate to the new option name');
+            return deferred.promise;
+        }
+
+        if (options.artifactoryHost) {
+            artifactoryHost = options.artifactoryHost;
+        }
+
+        if (options.artifactoryPath) {
+            artifactoryPath = options.artifactoryPath;
+        }
+
+        if (options.mockServerVersion) {
+            mockServerVersion = options.mockServerVersion;
+        }
+
+        var startupRetries = options.startupRetries || options.javaDebugPort ? 500 : 110;
+
+        // double check the jar has already been downloaded
+        require('./downloadJar').downloadJar(mockServerVersion, artifactoryHost, artifactoryPath).then(function () {
+
+            var spawn = require('child_process').spawn;
+            var glob = require('glob');
+            var commandLineOptions = ['-Dfile.encoding=UTF-8'];
+            if (options.trace) {
+                commandLineOptions.push('-Dmockserver.logLevel=TRACE');
+            } else if (options.verbose) {
+                commandLineOptions.push('-Dmockserver.logLevel=INFO');
+            } else {
+                commandLineOptions.push('-Dmockserver.logLevel=WARN');
+            }
+            if (options.javaDebugPort) {
+                commandLineOptions.push('-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=' + options.javaDebugPort);
+            }
+
+            if (options.jvmOptions) {
+                commandLineOptions.push(options.jvmOptions);
+            }
+            commandLineOptions.push('-jar');
+            commandLineOptions.push(glob.sync('**/mockserver-netty-*-jar-with-dependencies.jar'));
+            if (options.serverPort) {
+                commandLineOptions.push("-serverPort");
+                commandLineOptions.push(options.serverPort);
+                port = port || options.serverPort;
+            }
+            if (options.proxyRemotePort) {
+                commandLineOptions.push("-proxyRemotePort");
+                commandLineOptions.push(options.proxyRemotePort);
+            }
+            if (options.proxyRemoteHost) {
+                commandLineOptions.push("-proxyRemoteHost");
+                commandLineOptions.push(options.proxyRemoteHost);
+            }
+            if (options.logLevel) {
+                commandLineOptions.push("-logLevel");
+                commandLineOptions.push(options.logLevel);
+            }
+            if (options.verbose) {
+                console.log('Running \'java ' + commandLineOptions.join(' ') + '\'');
+            }
+            if (!options.runForked) {
+                function exitHandler(config, err) {
+                    return stop_mockserver(config.options).then(function () {
+                        if (config.exit) process.exit();
+                        if (err) console.log(err.stack);
+                    });
+                }
+
+                // stop mockserver when ctrl+c event fired
+                process.on('SIGINT', exitHandler.bind(null, {exit: false, options: options}));
+
+                // stop mockserver when kill used
+                process.on('SIGTERM', exitHandler.bind(null, {exit: true, options: options}));
+
+                // stop mockserver for uncaught exceptions
+                process.on('uncaughtException', exitHandler.bind(null, {exit: false, options: options}));
+            }
+            mockServer = spawn('java', commandLineOptions, {
+                stdio: ['ignore', (options.verbose ? process.stdout : 'ignore'), process.stderr]
+            });
+
+        }).then(function () {
+            return checkStarted({
+                method: 'PUT',
+                host: "localhost",
+                path: "/reset",
+                port: port
+            }, startupRetries, deferred, options.verbose);
+        }, function (error) {
+            deferred.reject(error);
+        });
 
         return deferred.promise;
     }
