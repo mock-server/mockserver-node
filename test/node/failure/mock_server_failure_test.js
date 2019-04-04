@@ -21,7 +21,7 @@
                             test.equal(error, 'Please specify "serverPort", for example: "start_mockserver({ serverPort: 1080 })"');
                             test.done();
                         }
-                    )
+                    );
             },
             'should fail start if ports missing': function (test) {
 
@@ -37,7 +37,7 @@
                             test.equal(error, 'Please specify "serverPort", for example: "start_mockserver({ serverPort: 1080 })"');
                             test.done();
                         }
-                    )
+                    );
             },
             'should fail stop if configuration missing': function (test) {
 
@@ -53,7 +53,7 @@
                             test.equal(error, 'Please specify "serverPort", for example: "stop_mockserver({ serverPort: 1080 })"');
                             test.done();
                         }
-                    )
+                    );
             },
             'should fail stop if ports missing': function (test) {
 
@@ -69,7 +69,7 @@
                             test.equal(error, 'Please specify "serverPort", for example: "stop_mockserver({ serverPort: 1080 })"');
                             test.done();
                         }
-                    )
+                    );
             }
         })
     };
