@@ -5,9 +5,9 @@
     var testCase = require('nodeunit').testCase;
     var mockserver = require(__dirname + '/../../..');
 
-    exports.mock_server_failure = {
+    exports.mock_server_start_failure = {
         'mock server fails to start': testCase({
-            'should fail start if configuration missing': function (test) {
+            'if configuration missing': function (test) {
 
                 test.expect(1);
                 mockserver
@@ -23,7 +23,7 @@
                         }
                     );
             },
-            'should fail start if ports missing': function (test) {
+            'if port is missing': function (test) {
 
                 test.expect(1);
                 mockserver
@@ -38,8 +38,13 @@
                             test.done();
                         }
                     );
-            },
-            'should fail stop if configuration missing': function (test) {
+            }
+        })
+    };
+
+    exports.mock_server_stop_failure = {
+        'mock server fails to stop': testCase({
+            'if configuration missing': function (test) {
 
                 test.expect(1);
                 mockserver
@@ -55,7 +60,7 @@
                         }
                     );
             },
-            'should fail stop if ports missing': function (test) {
+            'if port is missing': function (test) {
 
                 test.expect(1);
                 mockserver
