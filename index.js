@@ -137,7 +137,6 @@ module.exports = (function () {
     function start_mockserver(options) {
         var port;
         var deferred = defer();
-
         if (options && options.serverPort) {
             if (options.artifactoryHost) {
                 artifactoryHost = options.artifactoryHost;
@@ -165,6 +164,9 @@ module.exports = (function () {
                     commandLineOptions.push('-Dmockserver.logLevel=INFO');
                 } else {
                     commandLineOptions.push('-Dmockserver.logLevel=WARN');
+                }
+                if (options.initializationJsonPath) {
+                    commandLineOptions.push('-Dmockserver.initializationJsonPath=' + options.initializationJsonPath);
                 }
                 if (options.javaDebugPort) {
                     commandLineOptions.push('-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=' + options.javaDebugPort);
@@ -219,7 +221,7 @@ module.exports = (function () {
                 return checkStarted({
                     method: 'PUT',
                     host: "localhost",
-                    path: "/reset",
+                    path: "/mockserver/retrieve?type=ACTIVE_EXPECTATIONS",
                     port: port
                 }, startupRetries, deferred, options.verbose);
             }, function (error) {
