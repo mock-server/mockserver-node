@@ -26,8 +26,9 @@
             'if port is missing': function (test) {
 
                 test.expect(1);
+                var options = {};
                 mockserver
-                    .start_mockserver({})
+                    .start_mockserver(options)
                     .then(
                         function () {
                             test.ok(false, "should fail to start");
@@ -63,14 +64,14 @@
 
     exports.mock_server_stop_failure = {
         'mock server fails to stop': testCase({
-            'if configuration missing': function (test) {
+            'if configuration is missing': function (test) {
 
                 test.expect(1);
                 mockserver
                     .stop_mockserver()
                     .then(
                         function () {
-                            test.ok(false, "should fail to start");
+                            test.ok(false, "should fail to stop");
                             test.done();
                         },
                         function (error) {
@@ -82,11 +83,13 @@
             'if port is missing': function (test) {
 
                 test.expect(1);
+                var options = {};
+
                 mockserver
-                    .stop_mockserver({})
+                    .stop_mockserver(options)
                     .then(
                         function () {
-                            test.ok(false, "should fail to start");
+                            test.ok(false, "should fail to stop");
                             test.done();
                         },
                         function (error) {
