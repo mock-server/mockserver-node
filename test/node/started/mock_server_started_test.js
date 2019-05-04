@@ -8,7 +8,7 @@
 
     exports.mock_server_started = {
         'mock server should have started': testCase({
-            'should allows expectation to be setup': function (test) {
+            'should allow expectation to be set up': function (test) {
                 var port = 1081;
 
                 test.expect(2);
