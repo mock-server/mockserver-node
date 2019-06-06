@@ -4,7 +4,8 @@
 
 [![Build status](https://badge.buildkite.com/84d4f1ca00ee6639c1825ea31f0dcd50bd73088571813a219b.svg?style=square&theme=slack)](https://buildkite.com/mockserver/mockserver-node) [![Dependency Status](https://david-dm.org/jamesdbloom/mockserver-node.png)](https://david-dm.org/jamesdbloom/mockserver-node) [![devDependency Status](https://david-dm.org/jamesdbloom/mockserver-node/dev-status.png)](https://david-dm.org/jamesdbloom/mockserver-node#info=devDependencies) [![Code Climate](http://codeclimate.com/github/jamesdbloom/mockserver-node.png)](https://codeclimate.com/github/jamesdbloom/mockserver-node)
 
-[![NPM](https://nodei.co/npm/mockserver-node.png?downloads=true&stars=true)](https://nodei.co/npm/mockserver-node/) 
+[![NPM](https://nodei.co/npm/mockserver-node.png?downloads=true&stars=true)](https://nodei.co/npm/mockserver-node/) [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fjamesdbloom%2Fmockserver-node.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fjamesdbloom%2Fmockserver-node?ref=badge_shield)
+
 
 
 For chat room: [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/jamesdbloom/mockserver?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
@@ -239,3 +240,7 @@ Date       | Version | Description
 Task submitted by [James D Bloom](http://blog.jamesdbloom.com)
 
 [![Analytics](https://ga-beacon.appspot.com/UA-32687194-4/mockserver-node/README.md)](https://github.com/igrigorik/ga-beacon)
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fjamesdbloom%2Fmockserver-node.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fjamesdbloom%2Fmockserver-node?ref=badge_large)
