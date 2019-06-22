@@ -108,7 +108,7 @@ This value specifies the path to the artifactory leading to the mockserver-netty
 
 #### options.mockServerVersion
 Type: `String` 
-Default value: `5.5.4`
+Default value: `5.6.0`
 
 This value specifies the artifact version of MockServer to download.
 
@@ -233,6 +233,7 @@ Date       | Version | Description
 2018-12-29 | v5.5.1  | Upgrading MockServer to 5.5.1
 2018-12-29 | v5.5.2  | Fixed promise rejection issue
 2019-06-02 | v5.5.4  | Upgrading MockServer to 5.5.4
+2019-06-22 | v5.6.0  | Upgrading MockServer to 5.6.0
 
 ---
 
