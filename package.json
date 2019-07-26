@@ -24,11 +24,13 @@
         "test": "grunt"
     },
     "files": [
+        "README.md",
+        "LICENSE.md",
         "tasks",
         "index.js",
         "downloadJar.js",
-        "stop_MockServer.sh",
-        "mockserver-netty-5.6.1-jar-with-dependencies.jar"
+        "mockserver-netty-5.6.1-jar-with-dependencies.jar",
+        "stop_MockServer.sh"
     ],
     "devDependencies": {
         "grunt": "^1.0.3",
