@@ -16,53 +16,54 @@
         var fs = require('fs');
         var glob = require('glob');
         var dest = 'mockserver-netty-' + version + '-jar-with-dependencies.jar';
+        var snapshot = version.indexOf("SNAPSHOT") !== -1;
         var options = {
             host: artifactoryHost,
-            path: artifactoryPath + version + "/mockserver-netty-" + version + "-jar-with-dependencies.jar",
+            path: artifactoryPath && !snapshot ?
+                artifactoryPath + version + "/mockserver-netty-" + version + "-jar-with-dependencies.jar" :
+                "/service/local/artifact/maven/redirect?r=" + (snapshot ? "snapshots" : "releases") + "&g=org.mock-server&a=mockserver-netty&c=jar-with-dependencies&v=" + version,
             port: 443
         };
 
         var currentMockServerJars = glob.sync('**/mockserver-netty-*-jar-with-dependencies.jar');
-        if (currentMockServerJars.length > 1) {
-            console.log('Found duplicate versions of MockServer jar');
-            currentMockServerJars.forEach(function (item) {
+        currentMockServerJars.forEach(function (item) {
+            if (item.indexOf(dest) === -1 || snapshot) {
                 fs.unlinkSync(item);
-                console.log('Deleted ' + item);
-            });
-            currentMockServerJars.splice(0);
-        }
+                console.log('Deleted old version ' + item);
+            }
+        });
 
-        if (currentMockServerJars.length === 0) {
-            console.log('Fetching ' + JSON.stringify(options));
+        if (glob.sync('**/' + dest).length === 0) {
+            console.log('Fetching ' + JSON.stringify(options, null, 2));
             var req = https.request(options);
 
             req.once('error', function (error) {
-                console.error('Fetching ' + JSON.stringify(options) + ' failed with error ' + error);
-                deferred.reject(new Error('Fetching ' + JSON.stringify(options) + ' failed with error ' + error));
+                console.error('Fetching ' + JSON.stringify(options, null, 2) + ' failed with error ' + error);
+                deferred.reject(new Error('Fetching ' + JSON.stringify(options, null, 2) + ' failed with error ' + error));
             });
 
             req.once('response', function (res) {
                 if (res.statusCode < 200 || res.statusCode >= 300) {
-                    console.error('Fetching ' + JSON.stringify(options) + ' failed with HTTP status code ' + res.statusCode);
-                    deferred.reject(new Error('Fetching ' + JSON.stringify(options) + ' failed with HTTP status code ' + res.statusCode));
+                    console.error('Fetching ' + JSON.stringify(options, null, 2) + ' failed with HTTP status code ' + res.statusCode);
+                    deferred.reject(new Error('Fetching ' + JSON.stringify(options, null, 2) + ' failed with HTTP status code ' + res.statusCode));
+                } else {
+                    var writeStream = fs.createWriteStream(dest);
+                    res.pipe(writeStream);
+
+                    writeStream.on('error', function (error) {
+                        console.error('Saving ' + dest + ' failed with error ' + error);
+                        deferred.reject(new Error('Saving ' + dest + ' failed with error ' + error));
+                    });
+                    writeStream.on('close', function () {
+                        console.log('Saved ' + dest + ' from ' + JSON.stringify(options, null, 2));
+                        deferred.resolve();
+                    });
                 }
-
-                var writeStream = fs.createWriteStream(dest);
-                res.pipe(writeStream);
-
-                writeStream.on('error', function (error) {
-                    console.error('Saving ' + dest + ' failed with error ' + error);
-                    deferred.reject(new Error('Saving ' + dest + ' failed with error ' + error));
-                });
-                writeStream.on('close', function () {
-                    console.log('Saved ' + dest + ' from ' + JSON.stringify(options));
-                    deferred.resolve();
-                });
             });
 
             req.end();
         } else {
-            console.log('Skipping ' + JSON.stringify(options) + ' as file already downloaded');
+            console.log('Skipping ' + JSON.stringify(options, null, 2) + ' as file already downloaded');
             deferred.resolve();
         }
 

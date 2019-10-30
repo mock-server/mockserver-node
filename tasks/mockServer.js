@@ -18,7 +18,8 @@ module.exports = function (grunt) {
         options.verbose = grunt.option('verbose');
         mockServer.start_mockserver(options).then(function() {
             done(true);
-        }, function() {
+        }, function(err) {
+            console.error(err);
             console.error('\n' +
                 'mockserver-node - you must at least specify serverPort, for example:\n' +
                 'start_mockserver: {\n' +
@@ -36,7 +37,8 @@ module.exports = function (grunt) {
         options.verbose = grunt.option('verbose');
         mockServer.stop_mockserver(options).then(function() {
             done(true);
-        }, function() {
+        }, function(err) {
+            console.error(err);
             console.error('\n' +
                 'mockserver-node - you must at least specify serverPort, for example:\n' +
                 'stop_mockserver: {\n' +

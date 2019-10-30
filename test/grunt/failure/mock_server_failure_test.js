@@ -16,13 +16,15 @@
                 exec('../../../node_modules/.bin/grunt start_mockserver:missing_ports', execOptions, function (error, stdout, stderr) {
                     test.equal(
                         stderr,
-                        '\n' +
-                        'mockserver-node - you must at least specify serverPort, for example:\n' +
-                        'start_mockserver: {\n' +
-                        '    options: {\n' +
-                        '        serverPort: 1080\n' +
-                        '    }\n' +
-                        '}\n\n'
+                        "Please specify \"serverPort\", for example: \"start_mockserver({ serverPort: 1080 })\"\n" +
+                        "\n" +
+                        "mockserver-node - you must at least specify serverPort, for example:\n" +
+                        "start_mockserver: {\n" +
+                        "    options: {\n" +
+                        "        serverPort: 1080\n" +
+                        "    }\n" +
+                        "}\n" +
+                        "\n"
                     );
                     test.done();
                 });
@@ -32,13 +34,15 @@
                 exec('../../../node_modules/.bin/grunt stop_mockserver:missing_ports', execOptions, function (error, stdout, stderr) {
                     test.equal(
                         stderr,
-                        '\n' +
-                        'mockserver-node - you must at least specify serverPort, for example:\n' +
-                        'stop_mockserver: {\n' +
-                        '    options: {\n' +
-                        '        serverPort: 1080\n' +
-                        '    }\n' +
-                        '}\n\n'
+                        "Please specify \"serverPort\", for example: \"stop_mockserver({ serverPort: 1080 })\"\n" +
+                        "\n" +
+                        "mockserver-node - you must at least specify serverPort, for example:\n" +
+                        "stop_mockserver: {\n" +
+                        "    options: {\n" +
+                        "        serverPort: 1080\n" +
+                        "    }\n" +
+                        "}\n" +
+                        "\n"
                     );
                     test.done();
                 });
