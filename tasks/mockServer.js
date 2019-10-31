@@ -15,7 +15,7 @@ module.exports = function (grunt) {
     grunt.registerTask('start_mockserver', 'Run MockServer from grunt build', function () {
         var done = this.async();
         var options = this.options();
-        options.verbose = grunt.option('verbose');
+        options.verbose = options.trace || options.verbose || grunt.option('verbose');
         mockServer.start_mockserver(options).then(function() {
             done(true);
         }, function(err) {
