@@ -52,11 +52,15 @@ module.exports = (function () {
         req.once('error', function (error) {
             if (retries > 0) {
                 setTimeout(function () {
-                    verbose && console.log("waiting for MockServer to start retries remaining: " + retries);
+                    if (verbose) {
+                        console.log("waiting for MockServer to start retries remaining: " + retries);
+                    }
                     checkStarted(request, retries - 1, promise, verbose);
                 }, 100);
             } else {
-                verbose && console.log("MockServer failed to start");
+                if (verbose) {
+                    console.log("MockServer failed to start");
+                }
                 deferred.reject(error);
             }
         });
@@ -80,12 +84,16 @@ module.exports = (function () {
 
             response.on('end', function () {
                 if (retries > 0) {
-                    verbose && console.log("waiting for MockServer to stop retries remaining: " + retries);
+                    if (verbose) {
+                        console.log("waiting for MockServer to stop retries remaining: " + retries);
+                    }
                     setTimeout(function () {
-                        checkStopped(request, retries - 1, promise, verbose)
+                        checkStopped(request, retries - 1, promise, verbose);
                     }, 100);
                 } else {
-                    verbose && console.log("MockServer failed to stop");
+                    if (verbose) {
+                        console.log("MockServer failed to stop");
+                    }
                     deferred.reject();
                 }
             });
@@ -134,6 +142,49 @@ module.exports = (function () {
         return deferred.promise;
     }
 
+    function stop_mockserver(options) {
+        var port;
+        var deferred = defer();
+
+        if (options && options.serverPort) {
+            if (options.serverPort) {
+                port = port || options.serverPort;
+            }
+            if (options.verbose) {
+                console.log('Using port \'' + port + '\' to stop MockServer and MockServer Proxy');
+            }
+            sendRequest({
+                method: 'PUT',
+                host: "localhost",
+                path: "/stop",
+                port: port
+            }).then(
+                function () {
+                    if (mockServer) {
+                        mockServer.kill();
+                    }
+                    checkStopped({
+                        method: 'PUT',
+                        host: "localhost",
+                        path: "/reset",
+                        port: port
+                    }, 100, deferred, options && options.verbose); // wait for 10 seconds
+                },
+                function (err) {
+                    if (err && err.code === "ECONNREFUSED") {
+                        deferred.resolve();
+                    } else {
+                        deferred.reject(err);
+                    }
+                }
+            );
+
+        } else {
+            deferred.reject("Please specify \"serverPort\", for example: \"stop_mockserver({ serverPort: 1080 })\"");
+        }
+        return deferred.promise;
+    }
+
     function start_mockserver(options) {
         var port;
         var deferred = defer();
@@ -169,11 +220,9 @@ module.exports = (function () {
             var glob = require('glob');
             var commandLineOptions = ['-Dfile.encoding=UTF-8'];
             if (options.trace) {
-                commandLineOptions.push('-Dmockserver.logLevel=TRACE');
+                options.logLevel = 'TRACE';
             } else if (options.verbose) {
-                commandLineOptions.push('-Dmockserver.logLevel=INFO');
-            } else {
-                commandLineOptions.push('-Dmockserver.logLevel=WARN');
+                options.logLevel = 'DEBUG';
             }
             if (options.initializationJsonPath) {
                 commandLineOptions.push('-Dmockserver.initializationJsonPath=' + options.initializationJsonPath);
@@ -208,12 +257,16 @@ module.exports = (function () {
                 console.log('Running \'java ' + commandLineOptions.join(' ') + '\'');
             }
             if (!options.runForked) {
-                function exitHandler(config, err) {
+                var exitHandler = function(config, err) {
                     return stop_mockserver(config.options).then(function () {
-                        if (config.exit) process.exit();
-                        if (err) console.log(err.stack);
+                        if (config.exit) {
+                            process.exit();
+                        }
+                        if (err) {
+                            console.log(err.stack);
+                        }
                     });
-                }
+                };
 
                 // stop mockserver when ctrl+c event fired
                 process.on('SIGINT', exitHandler.bind(null, {exit: false, options: options}));
@@ -239,47 +292,6 @@ module.exports = (function () {
             deferred.reject(error);
         });
 
-        return deferred.promise;
-    }
-
-    function stop_mockserver(options) {
-        var port;
-        var deferred = defer();
-
-        if (options && options.serverPort) {
-            if (options.serverPort) {
-                port = port || options.serverPort;
-            }
-            if (options.verbose) {
-                console.log('Using port \'' + port + '\' to stop MockServer and MockServer Proxy');
-            }
-            sendRequest({
-                method: 'PUT',
-                host: "localhost",
-                path: "/stop",
-                port: port
-            }).then(
-                function () {
-                    mockServer && mockServer.kill();
-                    checkStopped({
-                        method: 'PUT',
-                        host: "localhost",
-                        path: "/reset",
-                        port: port
-                    }, 100, deferred, options && options.verbose); // wait for 10 seconds
-                },
-                function (err) {
-                    if (err && err.code === "ECONNREFUSED") {
-                        deferred.resolve();
-                    } else {
-                        deferred.reject(err);
-                    }
-                }
-            );
-
-        } else {
-            deferred.reject("Please specify \"serverPort\", for example: \"stop_mockserver({ serverPort: 1080 })\"");
-        }
         return deferred.promise;
     }
 
