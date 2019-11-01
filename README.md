@@ -112,6 +112,8 @@ Default value: `5.7.0`
 
 This value specifies the artifact version of MockServer to download.
 
+**Note:** It is also possible to specify a SNAPSHOT version to get the latest unreleased changes.
+
 #### options.verbose
 Type: `Boolean`
 Default value: `false`
