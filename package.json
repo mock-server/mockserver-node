@@ -46,7 +46,7 @@
         "grunt"
     ],
     "dependencies": {
-        "follow-redirects": "1.7.0",
+        "follow-redirects": "~1.11",
         "glob": "^7.1.5",
         "q": "~2.0"
     }
