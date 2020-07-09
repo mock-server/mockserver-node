@@ -1,5 +1,5 @@
 {
-  "name": "retrieve_recorded_expectations_examples",
+  "name": "request_matcher_examples",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
