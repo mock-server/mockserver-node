@@ -13,8 +13,8 @@
 * Issues / Bugs:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/mock-server/mockserver/issues"><img height="20px" src="http://mock-server.com/images/GitHub_Logo-md.png" alt="Github Issues"></a>
 * Chat:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://join-mock-server-slack.herokuapp.com" target="_blank"><img height="20px" src="http://mock-server.com/images/slack-logo-slim-md.png" alt="Join Slack"></a>
 
-
 ## Getting Started
+
 This node module can be used to start and stop [MockServer](http://mock-server.com/) and the [MockServer](http://mock-server.com/) proxy as a node module or as a Grunt plugin.  More information about the [MockServer](http://mock-server.com/) can be found at [mock-server.com](http://mock-server.com/). 
 
 You may install this plugin / node module with the following command:
@@ -169,86 +169,9 @@ This value indicates the how many times we will call the check to confirm if the
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
-## Release History
+## Changelog
 
-Date       | Version | Description
-:--------- |:------- |:----------------------------------------------------
-2014-28-10 | v0.0.1  | Released mockserver-grunt task
-2014-28-10 | v0.0.2  | Minor tweaks
-2014-28-10 | v0.0.3  | Yet more minor tweaks with build
-2014-29-10 | v0.0.4  | Separated out of main MockServer build
-2014-29-10 | v0.0.5  | Fully integration new drone.io build
-2014-29-10 | v0.0.6  | Fixing issue with attached jar
-2014-29-10 | v0.0.7  | Fixing issue missing tasks folder
-2014-29-10 | v0.0.8  | Added support for use as plain node module
-2014-29-10 | v0.0.9  | Added missing critical file to module
-2014-30-10 | v1.0.0  | Fixed final issues with file naming
-2014-30-10 | v1.0.1  | Improved the documentation
-2014-30-10 | v1.0.2  | Improved the documentation
-2014-01-11 | v1.0.3  | Replaced sleep with detection MockServer status
-2014-02-11 | v1.0.4  | Upgraded MockServer version and build process
-2014-03-11 | v1.0.5  | Fixed important typo in read me
-2014-03-11 | v1.0.6  | Fixed missing dependency
-2014-05-11 | v1.0.7  | Fixed issue #1 with bower & the jar file
-2014-20-11 | v1.0.8  | Upgrading MockServer & glob versions
-2014-20-11 | v1.0.9  | Upgrading MockServer to 3.8.1
-2014-23-11 | v1.0.10 | Upgrading MockServer to 3.8.2
-2014-03-12 | v1.0.11 | Add additional options and improved promise handling
-2014-03-12 | v1.0.12 | Improved documentation
-2014-04-12 | v1.0.13 | Removed dependency on request module
-2014-05-12 | v1.0.14 | Upgrading MockServer to 3.9.1
-2015-04-06 | v1.0.15 | Upgrading MockServer to 3.9.3
-2015-04-09 | v1.0.16 | Upgrading MockServer to 3.9.6
-2015-04-09 | v1.0.17 | Re-publishing as previous failed
-2015-04-10 | v1.0.18 | Upgrading MockServer to improve logging
-2015-04-10 | v1.0.19 | Improved jar download & logging switches
-2015-04-14 | v1.0.20 | Upgraded MockServer to improve SOCKS proxy
-2015-04-14 | v1.0.21 | Re-publishing as previous failed
-2015-05-01 | v1.0.23 | Upgrading MockServer version and improving stop script
-2015-05-05 | v1.0.24 | Trying to fix missing file caused by `npm publish` failing
-2015-06-02 | v1.0.25 | Upgrading MockServer to 3.9.15
-2015-06-20 | v1.0.26 | Upgrading MockServer to 3.9.16
-2015-06-30 | v1.0.27 | Upgrading MockServer to 3.9.17
-2015-09-27 | v1.0.28 | Upgrading MockServer to 3.10.0
-2015-09-27 | v1.0.29 | Improved the way MockServer is stopped
-2015-10-05 | v1.0.30 | Upgrading MockServer to 3.10.1
-2016-09-27 | v1.0.31 | Updated dependencies
-2016-09-27 | v1.0.32 | Fixed bug #8
-2016-10-09 | v1.0.33 | Resolved issues with dependencies
-2017-04-26 | v1.0.34 | Updated MockServer to 3.10.5
-2017-04-26 | v1.0.35 | Removing jar from module
-2017-04-27 | v1.0.36 | Updated MockServer to 3.10.6
-2017-04-29 | v1.0.37 | Updated build badge and flexible artifactory
-2017-04-30 | v1.0.38 | Added support for generic system properties
-2017-05-03 | v1.0.39 | Improving promise logic for protractor
-2017-05-04 | v1.0.41 | Validation of configuration and improved errors
-2017-07-12 | v1.1.0  | Renamed to mockserver-node
-2017-07-12 | v1.1.1  | Fixing peer dependencies
-2017-07-12 | v1.1.2  | Adding shutdown hook for Node to JVM
-2017-09-21 | v2.0.0  | Upgrading MockServer to 3.11
-2017-10-16 | v2.1.0  | Upgrading MockServer to 3.12
-2017-12-06 | v5.1.0  | Upgrading MockServer to 5.1.0
-2017-12-07 | v5.1.1  | Upgrading MockServer to 5.1.1
-2017-12-10 | v5.2.0  | Upgrading MockServer to 5.2.0
-2017-12-11 | v5.2.1  | Upgrading MockServer to 5.2.1
-2017-12-12 | v5.2.2  | Upgrading MockServer to 5.2.2
-2017-12-18 | v5.2.3  | Upgrading MockServer to 5.2.3
-2017-12-25 | v5.3.0  | Upgrading MockServer to 5.3.0
-2018-11-04 | v5.4.1  | Upgrading MockServer to 5.4.1
-2018-11-16 | v5.5.0  | Upgrading MockServer to 5.5.0
-2018-12-29 | v5.5.1  | Upgrading MockServer to 5.5.1
-2018-12-29 | v5.5.2  | Fixed promise rejection issue
-2019-06-02 | v5.5.4  | Upgrading MockServer to 5.5.4
-2019-06-22 | v5.6.0  | Upgrading MockServer to 5.6.0
-2019-07-26 | v5.6.1  | Upgrading MockServer to 5.6.1
-2019-11-01 | v5.7.0  | Fixed logging & upgrading to 5.7.0
-2019-11-10 | v5.7.1  | Upgrading MockServer to 5.7.1
-2019-11-17 | v5.7.2  | Upgrading MockServer to 5.7.2
-2019-12-01 | v5.8.0  | Upgrading MockServer to 5.8.0
-2019-12-24 | v5.8.1  | Upgrading MockServer to 5.8.1
-2020-02-01 | v5.9.0  | Upgrading MockServer to 5.9.0
-2020-03-24 | v5.10.0 | Upgrading MockServer to 5.10.0
-2020-07-08 | v5.11.0 | Upgrading MockServer to 5.11.0
+All notable and significant changes are detailed in the [MockServer changelog](https://github.com/mock-server/mockserver/blob/master/changelog.md) 
 
 ---
 
