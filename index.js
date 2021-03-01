@@ -233,7 +233,11 @@ module.exports = (function () {
         }
         
         if (options.jvmOptions) {
-          commandLineOptions.push(options.jvmOptions);
+          if (Array.isArray(options.jvmOptions)) {
+            commandLineOptions.push(...options.jvmOptions);
+          } else {
+            commandLineOptions.push(options.jvmOptions);
+          }
         }
         commandLineOptions.push('-jar');
         commandLineOptions.push(glob.sync('**/mockserver-netty-*-jar-with-dependencies.jar'));
