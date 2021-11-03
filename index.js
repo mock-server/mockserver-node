@@ -260,11 +260,11 @@ module.exports = (function () {
         if (!options.runForked) {
           var exitHandler = function(config, err) {
             return stop_mockserver(config.options).then(function () {
-              if (config.exit) {
-                process.exit();
-              }
               if (err) {
                 console.log(err.stack);
+              }
+              if (config.exit) {
+                process.exit();
               }
             });
           };
