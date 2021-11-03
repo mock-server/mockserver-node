@@ -122,7 +122,7 @@ This value specifies the artifact version of MockServer to download.
 Type: `Boolean`
 Default value: `false`
 
-This value indicates whether the MockServer logs should be written to the console.  In addition to logging additional output from the grunt task this options also sets the logging level of the MockServer to [**INFO**](http://www.mock-server.com/mock_server/debugging_issues.html). At **INFO** level all interactions with the MockServer including setting up expectations, matching expectations, clearing expectations and verifying requests are written to the log. The MockServer logs are written to ```mockserver.log``` in the current directory.  
+This value indicates whether the MockServer logs should be written to the console.  In addition to logging additional output from the grunt task this options also sets the logging level of the MockServer to [**VERBOSE**](http://www.mock-server.com/mock_server/debugging_issues.html). At **INFO** level low level details or exceptions that aren't usually considered an error are written to the log. The MockServer logs are written to ```mockserver.log``` in the current directory.  
 
 **Note:** It is also possible to use the ```--verbose``` command line switch to enabled verbose level logging from the command line.
 
