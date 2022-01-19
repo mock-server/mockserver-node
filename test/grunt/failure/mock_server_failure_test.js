@@ -14,6 +14,7 @@
             'should fail start if configuration missing': function (test) {
                 test.expect(1);
                 exec('../../../node_modules/.bin/grunt start_mockserver:missing_ports', execOptions, function (error, stdout, stderr) {
+                    stderr = stderr.replace(/\(node:\d*\) ExperimentalWarning: queueMicrotask\(\) is experimental\.\n/, '');
                     test.equal(
                         stderr,
                         "Please specify \"serverPort\", for example: \"start_mockserver({ serverPort: 1080 })\"\n" +
@@ -32,6 +33,7 @@
             'should fail stop if configuration missing': function (test) {
                 test.expect(1);
                 exec('../../../node_modules/.bin/grunt stop_mockserver:missing_ports', execOptions, function (error, stdout, stderr) {
+                    stderr = stderr.replace(/\(node:\d*\) ExperimentalWarning: queueMicrotask\(\) is experimental\.\n/, '');
                     test.equal(
                         stderr,
                         "Please specify \"serverPort\", for example: \"stop_mockserver({ serverPort: 1080 })\"\n" +
