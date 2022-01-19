@@ -7,4 +7,4 @@ npm install --no-optional
 
 # run project build
 
-grunt headless
+grunt
