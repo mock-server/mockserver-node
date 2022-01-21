@@ -213,6 +213,7 @@ module.exports = (function () {
   
       if (options.trace) {
         logLevel = 'TRACE';
+        options.verbose = true;
       } else if (options.verbose) {
         logLevel = 'DEBUG';
       }
@@ -236,7 +237,7 @@ module.exports = (function () {
           if (Array.isArray(options.jvmOptions)) {
             commandLineOptions.push(...options.jvmOptions);
           } else {
-            commandLineOptions.push(options.jvmOptions);
+            commandLineOptions.push(...options.jvmOptions.split(' '));
           }
         }
         commandLineOptions.push('-jar');
