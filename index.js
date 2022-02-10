@@ -279,14 +279,11 @@ module.exports = (function () {
             });
           };
   
-          // stop mockserver when ctrl+c event fired
-          process.on('SIGINT', exitHandler.bind(null, {exit: false, options: options}));
-  
           // stop mockserver when kill used
           process.on('SIGTERM', exitHandler.bind(null, {exit: true, options: options}));
   
           // stop mockserver for uncaught exceptions
-          process.on('uncaughtException', exitHandler.bind(null, {exit: false, options: options}));
+          process.on('uncaughtException', exitHandler.bind(null, {exit: true, options: options}));
         }
         mockServer = spawn('java', commandLineOptions, {
           stdio: ['ignore', (options.verbose ? process.stdout : 'ignore'), process.stderr]
