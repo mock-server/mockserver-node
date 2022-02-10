@@ -6,6 +6,7 @@
  * Licensed under the Apache License, Version 2.0
  */
 
+const glob = require("glob");
 module.exports = (function () {
 
     var mockServer;
@@ -241,7 +242,11 @@ module.exports = (function () {
           }
         }
         commandLineOptions.push('-jar');
-        commandLineOptions.push(glob.sync('**/mockserver-netty-*-jar-with-dependencies.jar'));
+        let items = glob.sync('node_modules/mockserver-node/mockserver-netty-*-jar-with-dependencies.jar');
+        if (items.length === 0) {
+          items = glob.sync('**/mockserver-netty-*-jar-with-dependencies.jar');
+        }
+        commandLineOptions.push(items);
         if (options.serverPort) {
           commandLineOptions.push("-serverPort");
           commandLineOptions.push(options.serverPort);
