@@ -296,7 +296,7 @@ function clearWithExpectationId() {
         .clearById("31e4ca35-66c6-4645-afeb-6e66c4ca0559")
         .then(
             function () {
-                console.log("cleared state that matches request matcher");
+                console.log("cleared state that matches expectation id");
             },
             function (error) {
                 console.log(error);
