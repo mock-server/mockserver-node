@@ -13,7 +13,7 @@ module.exports = (function () {
     var logLevel;
     var artifactoryHost = 'oss.sonatype.org';
     var artifactoryPath = '/content/repositories/releases/org/mock-server/mockserver-netty/';
-    var mockServerVersion = '5.11.2';
+    var mockServerVersion = '5.12.0';
     var Q = require('q');
     var http = require('http');
   
