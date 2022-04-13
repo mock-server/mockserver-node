@@ -28,7 +28,14 @@ module.exports = function (grunt) {
         },
         start_mockserver: {
             options: {
-                serverPort: 1080
+                serverPort: 1080,
+                jvmOptions: [
+                    '-Dmockserver.enableCORSForAllResponses=true',
+                    '-Dmockserver.corsAllowMethods="CONNECT, DELETE, GET, HEAD, OPTIONS, POST, PUT, PATCH, TRACE"',
+                    '-Dmockserver.corsAllowHeaders="Allow, Content-Encoding, Content-Length, Content-Type, ETag, Expires, Last-Modified, Location, Server, Vary, Authorization"',
+                    '-Dmockserver.corsAllowCredentials=true -Dmockserver.corsMaxAgeInSeconds=300'
+                ],
+                mockServerVersion: "5.13.2"
             }
         },
         stop_mockserver: {
@@ -87,7 +94,6 @@ module.exports = function (grunt) {
 
     grunt.loadNpmTasks('grunt-exec');
     grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-nodeunit');
 
     grunt.registerTask('test', [
