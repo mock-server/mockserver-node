@@ -279,9 +279,6 @@ module.exports = (function () {
             });
           };
   
-          // stop mockserver when kill used
-          process.on('SIGTERM', exitHandler.bind(null, {exit: true, options: options}));
-  
           // stop mockserver for uncaught exceptions
           process.on('uncaughtException', exitHandler.bind(null, {exit: true, options: options}));
         }
