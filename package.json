@@ -3,6 +3,7 @@
     "description": "Node.js module and Grunt plugin to start and stop MockServer",
     "version": "5.14.0",
     "homepage": "http://mock-server.com",
+    "types": "index.d.ts",
     "author": {
         "name": "James Bloom",
         "email": "jamesdbloom@gmail.com",
