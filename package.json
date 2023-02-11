@@ -28,6 +28,7 @@
         "LICENSE.md",
         "tasks",
         "index.js",
+        "index.d.ts",
         "downloadJar.js",
         "mockserver-netty-5.15.0-jar-with-dependencies.jar",
         "stop_MockServer.sh"
