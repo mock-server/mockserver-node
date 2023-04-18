@@ -46,7 +46,7 @@
     ],
     "dependencies": {
         "follow-redirects": "~1.15.2",
-        "glob": "~8.1.0",
+        "glob": "~10.2.1",
         "q": "~2.0.3"
     }
 }
