@@ -25,7 +25,7 @@
         port: 443
       };
   
-      var currentMockServerJars = glob.sync('**/mockserver-netty-*-jar-with-dependencies.jar');
+      var currentMockServerJars = glob.sync(__dirname + '/mockserver-netty-*-jar-with-dependencies.jar');
       currentMockServerJars.forEach(function (item) {
         if (item.indexOf(dest) === -1 || snapshot) {
           fs.unlinkSync(item);
@@ -35,7 +35,7 @@
         }
       });
   
-      if (glob.sync('**/' + dest).length === 0) {
+      if (!fs.existsSync(__dirname + '/' + dest)) {
         if (logLevel) {
           console.log('Fetching ' + JSON.stringify(options, null, 2));
         }
